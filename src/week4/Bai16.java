@@ -12,7 +12,7 @@ import javax.swing.JPanel;
 import javax.swing.border.Border;
 import javax.swing.border.TitledBorder;
 
-public class Bai16 extends JFrame implements ActionListener {
+public class bai16 extends JFrame implements ActionListener {
 
 	/**
 	 *
@@ -20,7 +20,7 @@ public class Bai16 extends JFrame implements ActionListener {
 	private static final long serialVersionUID = 1L;
 	private JPanel panel, p1, p2, p3, p4, p5, p6, p7, p8;
 
-	public Bai16() {
+	public bai16() {
 		setTitle("Border Demo");
 		setSize(500, 500); // set kích thước cửa sổ
 		setDefaultCloseOperation(EXIT_ON_CLOSE); // khi tắt thì tắt hẳn luôn sẽ không chạy ngầm
@@ -79,7 +79,7 @@ public class Bai16 extends JFrame implements ActionListener {
 	}
 
 	public static void main(String[] args) {
-		new bai13().setVisible(true);
+		new bai16().setVisible(true);
 	}
 
 	@Override
