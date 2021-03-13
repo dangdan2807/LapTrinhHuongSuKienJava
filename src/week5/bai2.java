@@ -81,10 +81,12 @@ public class bai2 extends JFrame implements ActionListener {
         if (obj.equals(btnGeneral)) {
             int n = Integer.parseInt((tfText1.getText()));
             if (isPrimary(n) == true) {
-                jList.append(String.valueOf(n));
+                jList.append(String.valueOf(n) + "\n");
+                tfText1.setText("");
             } else {
                 JOptionPane.showConfirmDialog(null, n + " Không là phải số nguyên tố", "Thông báo",
-                        JOptionPane.WARNING_MESSAGE);
+                JOptionPane.WARNING_MESSAGE);
+                tfText1.setText("");
             }
         }
     }
