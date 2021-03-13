@@ -1,7 +1,6 @@
 package week5;
 
 import javax.swing.*;
-
 import java.awt.*;
 import java.awt.event.*;
 
@@ -78,15 +77,20 @@ public class bai2 extends JFrame implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         Object obj = e.getSource();
+
         if (obj.equals(btnGeneral)) {
-            int n = Integer.parseInt((tfText1.getText()));
-            if (isPrimary(n) == true) {
-                jList.append(String.valueOf(n) + "\n");
-                tfText1.setText("");
-            } else {
-                JOptionPane.showConfirmDialog(null, n + " Không là phải số nguyên tố", "Thông báo",
-                JOptionPane.WARNING_MESSAGE);
-                tfText1.setText("");
+            if (tfText1.getText().equalsIgnoreCase(""))
+                JOptionPane.showConfirmDialog(null, "Thiếu tham số đầu vào", "Thông báo", JOptionPane.ERROR_MESSAGE);
+            else {
+                int n = Integer.parseInt((tfText1.getText()));
+                if (isPrimary(n) == true) {
+                    jList.append(String.valueOf(n) + "\n");
+                    tfText1.setText("");
+                } else {
+                    JOptionPane.showConfirmDialog(null, n + " Không là phải số nguyên tố", "Thông báo",
+                            JOptionPane.WARNING_MESSAGE);
+                    tfText1.setText("");
+                }
             }
         }
     }

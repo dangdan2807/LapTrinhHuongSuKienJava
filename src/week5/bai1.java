@@ -157,32 +157,32 @@ public class bai1 extends JFrame implements ActionListener {
         if (obj.equals(btnExit))
             System.exit(0);
         else if (obj.equals(btnGiai)) {
-            a = Double.parseDouble(tfInput1.getText());
-            b = Double.parseDouble(tfInput2.getText());
-            c = Double.parseDouble(tfInput3.getText());
-            if (a == 0) {
-                // a== 0 phuong trinh tro thanh phuong trinh bac mot bx + c = 0
-                if (b == 0) {
-                    if (c == 0)
-                        tfInput4.setText("Phương trình vô số nghiệm");
-                    else
+                a = Double.parseDouble(tfInput1.getText());
+                b = Double.parseDouble(tfInput2.getText());
+                c = Double.parseDouble(tfInput3.getText());
+                if (a == 0) {
+                    // a== 0 phuong trinh tro thanh phuong trinh bac mot bx + c = 0
+                    if (b == 0) {
+                        if (c == 0)
+                            tfInput4.setText("Phương trình vô số nghiệm");
+                        else
+                            tfInput4.setText("Phương trình vô nghiệm");
+                    } else {
+                        tfInput4.setText("Phương trình có nghiệm duy nhất: x = " + -1 * c / b);
+                    }
+                } else {
+                    delta = b * b - 4 * a * c;
+                    if (delta > 0) {
+                        x1 = (-b + Math.sqrt(delta)) / (2 * a);
+                        x2 = (-b - Math.sqrt(delta)) / (2 * a);
+                        tfInput4.setText("Phương trình 2 có nghiệm: x1 = " + x1 + ", x2 = " + x2);
+                    } else if (delta == 0) {
+                        tfInput4.setText("Phương trình 2 có nghiệm: x1 = x2 = " + -1 * b / 2 * a);
+                    } else {
                         tfInput4.setText("Phương trình vô nghiệm");
-                } else {
-                    tfInput4.setText("Phương trình có nghiệm duy nhất: x = " + -1 * c / b);
+                    }
                 }
-            } else {
-                delta = b * b - 4 * a * c;
-                if (delta > 0) {
-                    x1 = (-b + Math.sqrt(delta)) / (2 * a);
-                    x2 = (-b - Math.sqrt(delta)) / (2 * a);
-                    tfInput4.setText("Phương trình 2 có nghiệm: x1 = " + x1 + ", x2 = " + x2);
-                } else if (delta == 0) {
-                    tfInput4.setText("Phương trình 2 có nghiệm: x1 = x2 = " + -1 * b / 2 * a);
-                } else {
-                    tfInput4.setText("Phương trình vô nghiệm");
-                }
-            }
-        } else {
+        } else if (obj.equals(btnDelete)) {
             tfInput1.setText("");
             tfInput2.setText("");
             tfInput3.setText("");
