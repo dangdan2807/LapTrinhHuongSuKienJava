@@ -56,7 +56,5 @@ public class JComboBoxDemo extends JFrame implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         Object choice = cboFont.getSelectedItem();
         lblTitle.setFont(new Font(choice.toString(), Font.PLAIN, 12));
-
     }
-
 }
