@@ -27,6 +27,7 @@ public class bai2 extends JFrame implements ActionListener {
         JPanel pnNorth = new JPanel();
         pnNorth.add(Box.createRigidArea(new Dimension(0, 40)));
         pnMain.add(pnNorth, BorderLayout.NORTH);
+        
         tfText1 = new JTextField();
         tfText1.setPreferredSize(new Dimension(330, 30));
         tfText1.setFont(new Font("Arial", Font.PLAIN, 14));
@@ -39,6 +40,7 @@ public class bai2 extends JFrame implements ActionListener {
         JPanel pnCenter = new JPanel();
         pnCenter.add(Box.createRigidArea(new Dimension(5, 5)));
         pnMain.add(pnCenter);
+
         jList = new JTextArea(10, 1);
         jList.setPreferredSize(new Dimension(435, 10));
         jList.setBorder(BorderFactory.createLineBorder(Color.gray, 1));
@@ -50,6 +52,7 @@ public class bai2 extends JFrame implements ActionListener {
         btnGeneral.addActionListener(this);
     }
 
+    // sàng số nguyên tố
     public boolean isPrimary(int n) {
         if (n == 2 || n == 3 || n == 5)
             return true;
@@ -77,7 +80,6 @@ public class bai2 extends JFrame implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         Object obj = e.getSource();
-
         if (obj.equals(btnGeneral)) {
             if (tfText1.getText().equalsIgnoreCase(""))
                 JOptionPane.showConfirmDialog(null, "Thiếu tham số đầu vào", "Thông báo", JOptionPane.ERROR_MESSAGE);
@@ -94,5 +96,4 @@ public class bai2 extends JFrame implements ActionListener {
             }
         }
     }
-
 }

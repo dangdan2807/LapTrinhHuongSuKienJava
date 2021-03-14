@@ -106,6 +106,7 @@ public class bai3 extends JFrame implements ActionListener {
         input3 = new JTextField();
         input3.setPreferredSize(new Dimension(300, 30));
         input3.setFont(new Font("Arial", Font.BOLD, 14));
+        // disable text field
         input3.setEditable(false);
 
         // Dòng 1
@@ -127,12 +128,14 @@ public class bai3 extends JFrame implements ActionListener {
         Border borderPnRow3 = BorderFactory.createTitledBorder(lineBorder, "Phép Toán",
                 TitledBorder.DEFAULT_JUSTIFICATION, TitledBorder.DEFAULT_POSITION, new Font("Arial", Font.BOLD, 14));
 
+        // panel con để tạo khoảng cách đẩy phần radio vào
         JPanel pnChild = new JPanel();
         pnChild.setLayout(new BoxLayout(pnChild, BoxLayout.Y_AXIS));
         pnChild.setBorder(borderPnRow3);
 
         pnRow3.add(pnChild);
 
+        // Tạo radio
         radCong = new JRadioButton("Cộng", true);
         radCong.setFont(new Font("Arial", Font.BOLD, 14));
         radTru = new JRadioButton("Trừ");
@@ -141,20 +144,22 @@ public class bai3 extends JFrame implements ActionListener {
         radNhan.setFont(new Font("Arial", Font.BOLD, 14));
         radChia = new JRadioButton("Chia");
         radChia.setFont(new Font("Arial", Font.BOLD, 14));
-
+        // thêm radio vào nhóm để tránh bị chọn nhiều cái 1 lúc
         ButtonGroup btnGr = new ButtonGroup();
         btnGr.add(radCong);
         btnGr.add(radTru);
         btnGr.add(radNhan);
         btnGr.add(radChia);
 
+        // dòng chứa 2 radio cộng, trừ
         JPanel pnChild1 = new JPanel();
         pnChild1.setLayout(new BoxLayout(pnChild1, BoxLayout.X_AXIS));
         pnChild1.add(radCong);
         pnChild1.add(Box.createHorizontalStrut(88));
         pnChild1.add(radTru);
         pnChild1.add(Box.createHorizontalStrut(88));
-
+        
+        // dòng chứa 2 radio nhân, chia
         JPanel pnChild2 = new JPanel();
         pnChild2.setLayout(new BoxLayout(pnChild2, BoxLayout.X_AXIS));
         pnChild2.add(radNhan);
@@ -185,9 +190,11 @@ public class bai3 extends JFrame implements ActionListener {
         btnBlue = new JButton("");
         btnBlue.setBackground(Color.decode("#3f48cc"));
         btnBlue.add(Box.createRigidArea(new Dimension(5, 25)));
+
         btnRed = new JButton("");
         btnRed.setBackground(Color.RED);
         btnRed.add(Box.createRigidArea(new Dimension(5, 25)));
+
         btnYellow = new JButton("");
         btnYellow.setBackground(Color.YELLOW);
         btnYellow.add(Box.createRigidArea(new Dimension(5, 25)));
@@ -231,6 +238,7 @@ public class bai3 extends JFrame implements ActionListener {
             input2.setText("");
             input3.setText("");
         } else if (obj.equals(btnGiai)) {
+            // Kiểm tra đầu vào có rỗng
             if (input1.getText().equalsIgnoreCase("") || input2.getText().equalsIgnoreCase(""))
                 JOptionPane.showConfirmDialog(null, "Thiếu tham số đầu vào", "Thông báo", JOptionPane.ERROR_MESSAGE);
             else {

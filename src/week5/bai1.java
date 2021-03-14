@@ -130,8 +130,10 @@ public class bai1 extends JFrame implements ActionListener {
         // btn
         btnGiai = new JButton("Giải");
         btnGiai.setFont(new Font("Arial", Font.BOLD, 14));
+
         btnDelete = new JButton("Xoá rỗng");
         btnDelete.setFont(new Font("Arial", Font.BOLD, 14));
+        
         btnExit = new JButton("Thoát");
         btnExit.setFont(new Font("Arial", Font.BOLD, 14));
         // thêm nút vào south panel
