@@ -1,4 +1,4 @@
-package week5;
+package Demo;
 
 import java.awt.event.*;
 import java.awt.BorderLayout;

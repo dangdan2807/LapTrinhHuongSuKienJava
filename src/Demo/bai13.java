@@ -1,4 +1,4 @@
-package week4;
+package Demo;
 
 import java.awt.BorderLayout;
 import java.awt.Dimension;
