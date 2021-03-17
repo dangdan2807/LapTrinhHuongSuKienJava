@@ -179,7 +179,7 @@ public class bai1 extends JFrame implements ActionListener {
                 b = Double.parseDouble(tfInput2.getText());
                 c = Double.parseDouble(tfInput3.getText());
                 if (a == 0) {
-                    // a== 0 phuong trinh tro thanh phuong trinh bac mot bx + c = 0
+                    // a == 0 phuong trinh tro thanh phuong trinh bac mot bx + c = 0
                     if (b == 0) {
                         if (c == 0)
                             tfInput4.setText("Vô số nghiệm");

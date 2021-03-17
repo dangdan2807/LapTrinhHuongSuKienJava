@@ -24,11 +24,11 @@ public class bai3 extends JFrame implements ActionListener {
     private JRadioButton radChia;
     private JTextField input1;
     private JTextField input2;
-    private JTextField input3;
+    private JTextField kq;
     private JLabel ltlTitle;
 
     public bai3() {
-        setTitle("Primes");
+        setTitle("Máy Tính");
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setSize(600, 500);
         setLocationRelativeTo(null);
@@ -49,10 +49,9 @@ public class bai3 extends JFrame implements ActionListener {
 
         // east panel
         JPanel pnWest = new JPanel();
-        pnWest.setLayout(new BoxLayout(pnWest, BoxLayout.Y_AXIS));
+        pnWest.setLayout(new GridLayout(6, 1, 0, 10));
         pnWest.setBackground(Color.decode("#C0C0C0"));
         pnWest.setPreferredSize(new Dimension(120, 0));
-        pnWest.add(Box.createRigidArea(new Dimension(15, 0)));
         pnMain.add(pnWest, BorderLayout.WEST);
         // border
         Border lineBorder = BorderFactory.createLineBorder(Color.decode("#00ffff"), 2);
@@ -64,17 +63,20 @@ public class bai3 extends JFrame implements ActionListener {
         btnGiai = new JButton("Giải");
         btnGiai.add(Box.createRigidArea(new Dimension(60, 25)));
         btnGiai.setFont(new Font("Arial", Font.BOLD, 14));
+        btnGiai.setMnemonic(KeyEvent.VK_G);
+
         btnDelete = new JButton("Xoá");
         btnDelete.add(Box.createRigidArea(new Dimension(60, 25)));
         btnDelete.setFont(new Font("Arial", Font.BOLD, 14));
+        btnDelete.setMnemonic(KeyEvent.VK_D);
+        
         btnExit = new JButton("Thoát");
         btnExit.add(Box.createRigidArea(new Dimension(60, 25)));
         btnExit.setFont(new Font("Arial", Font.BOLD, 14));
+        btnExit.setMnemonic(KeyEvent.VK_E);
 
         pnWest.add(btnGiai);
-        pnWest.add(Box.createRigidArea(new Dimension(0, 10)));
         pnWest.add(btnDelete);
-        pnWest.add(Box.createRigidArea(new Dimension(0, 10)));
         pnWest.add(btnExit);
 
         // center panel
@@ -103,11 +105,11 @@ public class bai3 extends JFrame implements ActionListener {
         input2.setPreferredSize(new Dimension(300, 30));
         input2.setFont(new Font("Arial", Font.BOLD, 14));
 
-        input3 = new JTextField();
-        input3.setPreferredSize(new Dimension(300, 30));
-        input3.setFont(new Font("Arial", Font.BOLD, 14));
+        kq = new JTextField();
+        kq.setPreferredSize(new Dimension(300, 30));
+        kq.setFont(new Font("Arial", Font.BOLD, 14));
         // disable text field
-        input3.setEditable(false);
+        kq.setEditable(false);
 
         // Dòng 1
         JPanel pnRow1 = new JPanel();
@@ -158,7 +160,7 @@ public class bai3 extends JFrame implements ActionListener {
         pnChild1.add(Box.createHorizontalStrut(88));
         pnChild1.add(radTru);
         pnChild1.add(Box.createHorizontalStrut(88));
-        
+
         // dòng chứa 2 radio nhân, chia
         JPanel pnChild2 = new JPanel();
         pnChild2.setLayout(new BoxLayout(pnChild2, BoxLayout.X_AXIS));
@@ -174,7 +176,7 @@ public class bai3 extends JFrame implements ActionListener {
         JPanel pnRow4 = new JPanel();
         pnRow4.add(Box.createRigidArea(new Dimension(480, 10)));
         pnRow4.add(text3);
-        pnRow4.add(input3);
+        pnRow4.add(kq);
 
         pnCenter.add(pnRow1);
         pnCenter.add(pnRow2);
@@ -236,11 +238,15 @@ public class bai3 extends JFrame implements ActionListener {
         else if (obj.equals(btnDelete)) {
             input1.setText("");
             input2.setText("");
-            input3.setText("");
+            kq.setText("");
+            radCong.setSelected(true);
+            input1.requestFocus();
         } else if (obj.equals(btnGiai)) {
             // Kiểm tra đầu vào có rỗng
-            if (input1.getText().equalsIgnoreCase("") || input2.getText().equalsIgnoreCase(""))
-                JOptionPane.showConfirmDialog(null, "Thiếu tham số đầu vào", "Thông báo", JOptionPane.ERROR_MESSAGE);
+            if (!isNumber(input1))
+                focusTextField(input1);
+            else if (!isNumber(input2))
+                focusTextField(input2);
             else {
                 a = Double.parseDouble(input1.getText());
                 b = Double.parseDouble(input2.getText());
@@ -250,11 +256,25 @@ public class bai3 extends JFrame implements ActionListener {
                     result = a - b;
                 else if (radNhan.isSelected())
                     result = a * b;
-                else if (radChia.isSelected())
-                    result = a / b;
-                input3.setText(String.valueOf(result));
+                else if (radChia.isSelected()) {
+                    if (b != 0)
+                        result = a / b;
+                    else
+                        focusTextField(input2);
+                }
+                kq.setText(String.valueOf(result));
             }
         }
+    }
 
+    public void focusTextField(JTextField text) {
+        JOptionPane.showMessageDialog(this, "Lỗi nhập liệu " + text.getText());
+        text.selectAll();
+        text.requestFocus();
+        return;
+    }
+
+    public boolean isNumber(JTextField text) {
+        return text.getText().matches("^-?\\d*\\.?\\d+$");
     }
 }

@@ -9,7 +9,7 @@ public class bai2 extends JFrame implements ActionListener {
      *
      */
     private static final long serialVersionUID = 1L;
-    private JTextField tfText1;
+    private JTextField text;
     private JButton btnGeneral;
     private JTextArea jList;
 
@@ -27,13 +27,13 @@ public class bai2 extends JFrame implements ActionListener {
         JPanel pnNorth = new JPanel();
         pnNorth.add(Box.createRigidArea(new Dimension(0, 40)));
         pnMain.add(pnNorth, BorderLayout.NORTH);
-        
-        tfText1 = new JTextField();
-        tfText1.setPreferredSize(new Dimension(330, 30));
-        tfText1.setFont(new Font("Arial", Font.PLAIN, 14));
+
+        text = new JTextField();
+        text.setPreferredSize(new Dimension(330, 30));
+        text.setFont(new Font("Arial", Font.PLAIN, 14));
         btnGeneral = new JButton("General");
         btnGeneral.setPreferredSize(new Dimension(100, 30));
-        pnNorth.add(tfText1);
+        pnNorth.add(text);
         pnNorth.add(btnGeneral);
 
         // Center panel
@@ -53,7 +53,7 @@ public class bai2 extends JFrame implements ActionListener {
     }
 
     // sàng số nguyên tố
-    public boolean isPrimary(int n) {
+    public boolean isPrime(int n) {
         if (n == 2 || n == 3 || n == 5)
             return true;
         if (n % 2 == 0 || n % 5 == 0 || n % 3 == 0 || n < 2)
@@ -81,19 +81,31 @@ public class bai2 extends JFrame implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         Object obj = e.getSource();
         if (obj.equals(btnGeneral)) {
-            if (tfText1.getText().equalsIgnoreCase(""))
-                JOptionPane.showConfirmDialog(null, "Thiếu tham số đầu vào", "Thông báo", JOptionPane.ERROR_MESSAGE);
-            else {
-                int n = Integer.parseInt((tfText1.getText()));
-                if (isPrimary(n) == true) {
-                    jList.append(String.valueOf(n) + "\n");
-                    tfText1.setText("");
+            jList.setText("");
+            try {
+                int n = Integer.parseInt(text.getText());
+                if (n > 0) {
+                    int i = 2;
+                    while (n > 0) {
+                        if (isPrime(i)) {
+                            jList.append(i + "\n");
+                            n--;
+                        }
+                        i++;
+                    }
                 } else {
-                    JOptionPane.showConfirmDialog(null, n + " Không là phải số nguyên tố", "Thông báo",
-                            JOptionPane.WARNING_MESSAGE);
-                    tfText1.setText("");
+                    JOptionPane.showMessageDialog(null, "Nhập số nguyên dương.");
                 }
+            } catch (NumberFormatException ex) {
+                JOptionPane.showMessageDialog(null, "Lỗi nhập liệu.");
             }
         }
+        focusTextField();
+    }
+
+    private void focusTextField() {
+        text.selectAll();
+        text.requestFocus();
+        return;
     }
 }
