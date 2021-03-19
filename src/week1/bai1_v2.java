@@ -113,7 +113,6 @@ public class bai1_v2 extends JFrame {
                 float a = 0, b = 0, c = 0;
                 try {
                     a = Float.parseFloat(sa);
-                    ;
                 } catch (Exception ex) {
                     JOptionPane.showMessageDialog(null, "Nhập sai định dạng!");
                     txta.selectAll();
