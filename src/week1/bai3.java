@@ -47,7 +47,7 @@ public class bai3 extends JFrame implements ActionListener {
         pnNorth.add(ltlTitle);
         pnMain.add(pnNorth, BorderLayout.NORTH);
 
-        // east panel
+        // west panel
         JPanel pnWest = new JPanel();
         pnWest.setLayout(new GridLayout(6, 1, 0, 10));
         pnWest.setBackground(Color.decode("#C0C0C0"));
