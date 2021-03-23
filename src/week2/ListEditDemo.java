@@ -13,8 +13,8 @@ public class ListEditDemo extends JFrame implements ListSelectionListener, Actio
     private static final long serialVersionUID = 1L;
     JButton btnAdd, btnRemove;
     JTextField txtName;
-    DefaultListModel listModelName;
-    JList listName;
+    DefaultListModel<String> listModelName;
+    JList<String> listName;
 
     public ListEditDemo() {
         setTitle("JList Edit Demo");
@@ -23,8 +23,8 @@ public class ListEditDemo extends JFrame implements ListSelectionListener, Actio
         setLocationRelativeTo(null);
         setResizable(false);
 
-        listModelName = new DefaultListModel();
-        listName = new JList(listModelName);
+        listModelName = new DefaultListModel<String>();
+        listName = new JList<String>(listModelName);
         add(new JScrollPane(listName), BorderLayout.CENTER);
 
         JPanel pRight, pTop, pBottom;

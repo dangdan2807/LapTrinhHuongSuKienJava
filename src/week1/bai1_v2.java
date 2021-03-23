@@ -108,9 +108,11 @@ public class bai1_v2 extends JFrame {
         });
         // sự kiện giải
         btnGiai.addActionListener(new ActionListener() {
+            private float a, b, c;
+
             public void actionPerformed(ActionEvent arg0) {
                 String sa = txta.getText();
-                float a = 0, b = 0, c = 0;
+                a = 0; b = 0; c = 0;
                 try {
                     a = Float.parseFloat(sa);
                 } catch (Exception ex) {

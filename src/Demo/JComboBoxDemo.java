@@ -11,7 +11,7 @@ public class JComboBoxDemo extends JFrame implements ActionListener {
      *
      */
     private static final long serialVersionUID = 1L;
-    private JComboBox cboFont;
+    private JComboBox<String> cboFont;
     private JLabel lblTitle;
 
     public JComboBoxDemo() {
@@ -28,7 +28,7 @@ public class JComboBoxDemo extends JFrame implements ActionListener {
         lblTitle = new JLabel("the quick brown fox jumps over the lazy dog");
         lblTitle.setFont(new Font("Serif", Font.PLAIN, 12));
 
-        cboFont = new JComboBox();
+        cboFont = new JComboBox<String>();
         cboFont.addItem("Serif");
         cboFont.addItem("SansSerif");
         cboFont.addItem("Monospaced");

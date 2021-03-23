@@ -23,8 +23,8 @@ public class bai2 extends JFrame implements ActionListener, ListSelectionListene
     private JButton btnAdd;
     private JTextField txtInput;
     private JCheckBox chkSoAm;
-    private JList listNumber;
-    private DefaultListModel listModelNumber;
+    private JList<Integer> listNumber;
+    private DefaultListModel<Integer> listModel;
 
     public bai2() {
         setTitle("Thao tác trên JList");
@@ -89,8 +89,8 @@ public class bai2 extends JFrame implements ActionListener, ListSelectionListene
         pChildNorth.add(chkSoAm);
 
         // list
-        listModelNumber = new DefaultListModel();
-        listNumber = new JList(listModelNumber);
+        listModel = new DefaultListModel<Integer>();
+        listNumber = new JList<Integer>(listModel);
         listNumber.setVisibleRowCount(10);
 
         // thêm vào center panel
@@ -135,11 +135,11 @@ public class bai2 extends JFrame implements ActionListener, ListSelectionListene
             System.exit(0);
         }
         else if (o == btnAdd) {
-            String name = txtInput.getText().trim();
-            if (name.equalsIgnoreCase(""))
+            String str = txtInput.getText().trim();
+            if (str.equalsIgnoreCase(""))
                 JOptionPane.showMessageDialog(this, "Please input name!");
             else {
-                listModelNumber.addElement(name);
+                listModel.addElement(str);
                 txtInput.setText("");
             }
             focusTextField(txtInput);

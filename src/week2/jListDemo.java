@@ -11,7 +11,7 @@ public class jListDemo extends JFrame implements ListSelectionListener {
      *
      */
     private static final long serialVersionUID = 1L;
-    private JList lstEntry;
+    private JList<String> lstEntry;
     private JTextField txtSelected;
 
     public jListDemo() {
@@ -22,7 +22,7 @@ public class jListDemo extends JFrame implements ListSelectionListener {
         setResizable(false);
 
         String[] entries = { "Entry 1", "Entry 2", "Entry 3", "Entry 4", "Entry 5", "Entry 6" };
-        lstEntry = new JList(entries);
+        lstEntry = new JList<String>(entries);
         lstEntry.setFont(new Font("Arial", Font.BOLD, 14));
         lstEntry.setVisibleRowCount(4);
         lstEntry.setPreferredSize(new Dimension(60, 120));
