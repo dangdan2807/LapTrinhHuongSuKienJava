@@ -104,7 +104,7 @@ public class bai2 extends JFrame implements ActionListener, ListSelectionListene
         pChildSouth.add(btnRandom);
 
         // thêm vào center panel
-        pCenter.add(pChildNorth, BorderLayout.SOUTH);
+        pCenter.add(pChildNorth, BorderLayout.NORTH);
         pCenter.add(list, BorderLayout.CENTER);
         pCenter.add(new JScrollPane(list, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS,
                 JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED), BorderLayout.EAST);
