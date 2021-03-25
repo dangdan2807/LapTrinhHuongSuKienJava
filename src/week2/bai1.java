@@ -4,6 +4,7 @@ import javax.swing.*;
 import javax.swing.event.*;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.border.*;
+import javax.swing.table.*;
 
 import java.awt.*;
 import java.awt.event.*;
@@ -85,7 +86,7 @@ public class bai1 extends JFrame implements ActionListener, ListSelectionListene
         JLabel txtGender = new JLabel("Phái: ");
         tfAge = new JTextField(35);
         radNu = new JRadioButton("Nữ");
-        
+
         txtAge.setFont(new Font("Arial", Font.BOLD, fontSize));
         txtGender.setFont(new Font("Arial", Font.BOLD, fontSize));
         tfAge.setFont(new Font("Arial", Font.BOLD, fontSize));
@@ -113,20 +114,45 @@ public class bai1 extends JFrame implements ActionListener, ListSelectionListene
         pRow4.add(tfLuong);
 
         // row table
-        JPanel pTable = new JPanel();
+        JPanel pTable = new JPanel(new BorderLayout());
         String[] columnNames = { "Mã NV", "Họ", "Tên", "Phái", "Tuổi", "Tiền Lương" };
         String[][] data = {
-			{ "Kundan Kumar Jha", "4031", "CSE", "", ""}
-			// { "Anand Jha", "6014", "IT", "", ""}
-		};
-        tableModel = new DefaultTableModel(data, columnNames);
+            {"1", "", "", "", "", ""},
+            {"2", "", "", "", "", ""},
+            {"3", "", "", "", "", ""},
+            {"4", "", "", "", "", ""},
+            {"5", "", "", "", "", ""},
+            {"6", "", "", "", "", ""},
+            {"7", "", "", "", "", ""},
+            {"8", "", "", "", "", ""},
+            {"9", "", "", "", "", ""},
+            {"10", "", "", "", "", ""},
+            {"11", "", "", "", "", ""},
+            {"12", "", "", "", "", ""},
+            {"13", "", "", "", "", ""},
+            {"14", "", "", "", "", ""},
+            {"15", "", "", "", "", ""}
+        };
+        // tableModel = new DefaultTableModel(data, columnNames);
+        tableModel = new DefaultTableModel(columnNames, 0);
         table = new JTable(tableModel);
-        JScrollPane panel = new JScrollPane(table);
+        table.setFont(new Font("Arial", Font.PLAIN, fontSize));
+        table.setRowHeight(25);
+
+        for (int i = 0; i < columnNames.length; i++)
+            table.getColumnModel().getColumn(i).setMinWidth(125);
+
+        JTableHeader header = table.getTableHeader();
+        header.setFont(new Font("Arial", Font.BOLD, fontSize));
+
+        JScrollPane scrollPane = new JScrollPane(table, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS,
+        JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+        scrollPane.setPreferredSize(new Dimension(15, 250));
 
         // thêm vào table panel
-        pTable.add(panel, BorderLayout.CENTER);
-        table.setRowHeight(30);
-        pTable.add(table);
+        pTable.add(table.getTableHeader(), BorderLayout.NORTH);
+        pTable.add(table, BorderLayout.CENTER);
+        pTable.add(scrollPane, BorderLayout.EAST);
 
         // thêm vào center panel
         pCenter.add(pRow1);
@@ -153,7 +179,7 @@ public class bai1 extends JFrame implements ActionListener, ListSelectionListene
         pSouthLeft.add(txtTimID);
         pSouthLeft.add(tfTimID);
         pSouthLeft.add(btnTimID);
-        
+
         // south right panel
         JPanel pSouthRight = new JPanel();
         pSouthRight.setBorder(loweredBevel);
