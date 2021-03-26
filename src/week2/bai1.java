@@ -84,7 +84,7 @@ public class bai1 extends JFrame implements ActionListener, ListSelectionListene
         JPanel pRow3 = new JPanel();
         JLabel txtAge = new JLabel("Tuổi: ");
         JLabel txtGender = new JLabel("Phái: ");
-        tfAge = new JTextField(35);
+        tfAge = new JTextField(36);
         radNu = new JRadioButton("Nữ");
         // set font
         txtAge.setFont(new Font("Arial", Font.BOLD, fontSize));
@@ -95,11 +95,9 @@ public class bai1 extends JFrame implements ActionListener, ListSelectionListene
         pRow3.add(txtAge);
         pRow3.add(Box.createHorizontalStrut(65));
         pRow3.add(tfAge);
-        pRow3.add(Box.createHorizontalStrut(15));
         pRow3.add(txtGender);
-        pRow3.add(Box.createHorizontalStrut(10));
+        pRow3.add(Box.createHorizontalStrut(20));
         pRow3.add(radNu);
-        pRow3.add(Box.createHorizontalStrut(1));
 
         // row 4: lương
         JPanel pRow4 = new JPanel();
@@ -131,7 +129,7 @@ public class bai1 extends JFrame implements ActionListener, ListSelectionListene
         //     {"12", "", "", "", "", ""},
         // };
         // tableModel = new DefaultTableModel(data, columnNames);
-        
+
         // tạo table
         tableModel = new DefaultTableModel(columnNames, 0);
         table = new JTable(tableModel);
