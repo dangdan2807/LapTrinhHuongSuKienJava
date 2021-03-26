@@ -2,7 +2,6 @@ package week2;
 
 import javax.swing.*;
 import javax.swing.event.*;
-import javax.swing.table.DefaultTableModel;
 import javax.swing.border.*;
 import javax.swing.table.*;
 
@@ -51,28 +50,29 @@ public class bai1 extends JFrame implements ActionListener, ListSelectionListene
 
         // center panel
         JPanel pCenter = new JPanel();
-        // row 1
+
+        // row 1: mã nhân viên
         JPanel pRow1 = new JPanel();
         JLabel txtIdNV = new JLabel("Mã nhân viên: ");
         txtIdNV.setFont(new Font("Arial", Font.BOLD, fontSize));
         tfIdNV = new JTextField(45);
         tfIdNV.setFont(new Font("Arial", Font.BOLD, fontSize));
-
+        // thêm vào row 1
         pRow1.add(txtIdNV);
         pRow1.add(tfIdNV);
 
-        // row 2
+        // row 2: thông tin nhân viên
         JPanel pRow2 = new JPanel();
         JLabel txtFirstName = new JLabel("Họ: ");
         JLabel txtLastName = new JLabel("Tên nhân viên: ");
         tfFirstName = new JTextField(19);
         tfLastName = new JTextField(16);
-
+        // set font item
         txtFirstName.setFont(new Font("Arial", Font.BOLD, fontSize));
         txtLastName.setFont(new Font("Arial", Font.BOLD, fontSize));
         tfFirstName.setFont(new Font("Arial", Font.BOLD, fontSize));
         tfLastName.setFont(new Font("Arial", Font.BOLD, fontSize));
-
+        // thêm vào row 2
         pRow2.add(txtFirstName);
         pRow2.add(Box.createHorizontalStrut(75));
         pRow2.add(tfFirstName);
@@ -80,18 +80,18 @@ public class bai1 extends JFrame implements ActionListener, ListSelectionListene
         pRow2.add(txtLastName);
         pRow2.add(tfLastName);
 
-        // row 3
+        // row 3: tuồi, giới tính
         JPanel pRow3 = new JPanel();
         JLabel txtAge = new JLabel("Tuổi: ");
         JLabel txtGender = new JLabel("Phái: ");
         tfAge = new JTextField(35);
         radNu = new JRadioButton("Nữ");
-
+        // set font
         txtAge.setFont(new Font("Arial", Font.BOLD, fontSize));
         txtGender.setFont(new Font("Arial", Font.BOLD, fontSize));
         tfAge.setFont(new Font("Arial", Font.BOLD, fontSize));
         radNu.setFont(new Font("Arial", Font.BOLD, fontSize));
-
+        // thêm vào giao diện
         pRow3.add(txtAge);
         pRow3.add(Box.createHorizontalStrut(65));
         pRow3.add(tfAge);
@@ -101,14 +101,14 @@ public class bai1 extends JFrame implements ActionListener, ListSelectionListene
         pRow3.add(radNu);
         pRow3.add(Box.createHorizontalStrut(1));
 
-        // row 4
+        // row 4: lương
         JPanel pRow4 = new JPanel();
         JLabel txtLuong = new JLabel("Lương: ");
         tfLuong = new JTextField(45);
-
+        // set font
         txtLuong.setFont(new Font("Arial", Font.BOLD, fontSize));
         tfLuong.setFont(new Font("Arial", Font.BOLD, fontSize));
-
+        // thêm vào giao diện
         pRow4.add(txtLuong);
         pRow4.add(Box.createHorizontalStrut(44));
         pRow4.add(tfLuong);
@@ -116,32 +116,31 @@ public class bai1 extends JFrame implements ActionListener, ListSelectionListene
         // row table
         JPanel pTable = new JPanel(new BorderLayout());
         String[] columnNames = { "Mã NV", "Họ", "Tên", "Phái", "Tuổi", "Tiền Lương" };
-        String[][] data = {
-            {"1", "", "", "", "", ""},
-            {"2", "", "", "", "", ""},
-            {"3", "", "", "", "", ""},
-            {"4", "", "", "", "", ""},
-            {"5", "", "", "", "", ""},
-            {"6", "", "", "", "", ""},
-            {"7", "", "", "", "", ""},
-            {"8", "", "", "", "", ""},
-            {"9", "", "", "", "", ""},
-            {"10", "", "", "", "", ""},
-            {"11", "", "", "", "", ""},
-            {"12", "", "", "", "", ""},
-            {"13", "", "", "", "", ""},
-            {"14", "", "", "", "", ""},
-            {"15", "", "", "", "", ""}
-        };
+        // String[][] data = {
+        //     {"1", "", "", "", "", ""},
+        //     {"2", "", "", "", "", ""},
+        //     {"3", "", "", "", "", ""},
+        //     {"4", "", "", "", "", ""},
+        //     {"5", "", "", "", "", ""},
+        //     {"6", "", "", "", "", ""},
+        //     {"7", "", "", "", "", ""},
+        //     {"8", "", "", "", "", ""},
+        //     {"9", "", "", "", "", ""},
+        //     {"10", "", "", "", "", ""},
+        //     {"11", "", "", "", "", ""},
+        //     {"12", "", "", "", "", ""},
+        // };
         // tableModel = new DefaultTableModel(data, columnNames);
+        
+        // tạo table
         tableModel = new DefaultTableModel(columnNames, 0);
         table = new JTable(tableModel);
         table.setFont(new Font("Arial", Font.PLAIN, fontSize));
         table.setRowHeight(25);
-
+        // set chiều dài cho từng cột của table
         for (int i = 0; i < columnNames.length; i++)
             table.getColumnModel().getColumn(i).setMinWidth(125);
-
+        // set font cho cột
         JTableHeader header = table.getTableHeader();
         header.setFont(new Font("Arial", Font.BOLD, fontSize));
 
@@ -175,6 +174,7 @@ public class bai1 extends JFrame implements ActionListener, ListSelectionListene
         // btn
         btnTimID = new JButton("Tìm");
         btnTimID.setFont(new Font("Arial", Font.BOLD, fontSize));
+
         // thêm vào South Left panel
         pSouthLeft.add(txtTimID);
         pSouthLeft.add(tfTimID);
@@ -188,7 +188,7 @@ public class bai1 extends JFrame implements ActionListener, ListSelectionListene
         btnXoaTrang = new JButton("Xoá Trắng");
         btnXoa = new JButton("Xoá");
         btnLuu = new JButton("Lưu");
-
+        // set font btn
         btnThem.setFont(new Font("Arial", Font.BOLD, fontSize));
         btnXoaTrang.setFont(new Font("Arial", Font.BOLD, fontSize));
         btnXoa.setFont(new Font("Arial", Font.BOLD, fontSize));
@@ -212,6 +212,11 @@ public class bai1 extends JFrame implements ActionListener, ListSelectionListene
         add(pSouth, BorderLayout.SOUTH);
 
         // Lắng nghe sự kiện
+        btnTimID.addActionListener(this);
+        btnLuu.addActionListener(this);
+        btnThem.addActionListener(this);
+        btnXoa.addActionListener(this);
+        btnXoaTrang.addActionListener(this);
     }
 
     public static void main(String[] args) {
