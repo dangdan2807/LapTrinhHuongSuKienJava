@@ -14,50 +14,39 @@ public class bai1 extends JFrame implements ActionListener, ListSelectionListene
      *
      */
     private static final long serialVersionUID = 1L;
-    private int fontSize = 16;
-    private JLabel lblTitle;
-    private JTextField tfIdNV;
-    private JTextField tfFirstName;
-    private JTextField tfLastName;
+    private JLabel lbTitle;
+    private JTextField tfIdNV, tfFirstName, tfLastName, tfAge, tfLuong, tfTimID;
+    private JButton btnTimID, btnThem, btnXoaTrang, btnXoa, btnLuu;
     private JRadioButton radNu;
-    private JTextField tfAge;
-    private JTextField tfLuong;
-    private DefaultTableModel tableModel;
+    private DefaultTableModel model;
     private JTable table;
-    private JTextField tfTimID;
-    private JButton btnTimID;
-    private JButton btnThem;
-    private JButton btnXoaTrang;
-    private JButton btnXoa;
-    private JButton btnLuu;
+
+    private int fontSize = 14;
+    private Font font = new Font("Arial", Font.BOLD, fontSize);
+    String[] cols = { "Mã Sách", "Tên Sách", "Tác Giả", "Số Lượng", "NXB" };
 
     public bai1() {
         setTitle("Thông Tin Nhân Viên");
         setDefaultCloseOperation(EXIT_ON_CLOSE);
-        setSize(800, 600);
+        setSize(750, 600);
         setLocationRelativeTo(null);
         setResizable(false);
 
-        JPanel pMain = new JPanel();
-        pMain.setLayout(new BoxLayout(pMain, BoxLayout.Y_AXIS));
-
         // north panel
         JPanel pNorth = new JPanel();
-        lblTitle = new JLabel("THÔNG TIN NHÂN VIÊN");
-        lblTitle.setFont(new Font("Arial", Font.BOLD, 24));
-        lblTitle.setForeground(Color.BLUE);
-        pNorth.add(lblTitle);
-
-        // center panel
-        JPanel pCenter = new JPanel();
+        lbTitle = new JLabel("THÔNG TIN NHÂN VIÊN");
+        lbTitle.setFont(new Font("Arial", Font.BOLD, 24));
+        lbTitle.setForeground(Color.BLUE);
+        pNorth.add(lbTitle);
 
         // row 1: mã nhân viên
         JPanel pRow1 = new JPanel();
         JLabel txtIdNV = new JLabel("Mã nhân viên: ");
-        txtIdNV.setFont(new Font("Arial", Font.BOLD, fontSize));
         tfIdNV = new JTextField(45);
-        tfIdNV.setFont(new Font("Arial", Font.BOLD, fontSize));
-        // thêm vào row 1
+
+        txtIdNV.setFont(font);
+        tfIdNV.setFont(font);
+
         pRow1.add(txtIdNV);
         pRow1.add(tfIdNV);
 
@@ -66,15 +55,15 @@ public class bai1 extends JFrame implements ActionListener, ListSelectionListene
         JLabel txtFirstName = new JLabel("Họ: ");
         JLabel txtLastName = new JLabel("Tên nhân viên: ");
         tfFirstName = new JTextField(19);
-        tfLastName = new JTextField(16);
-        // set font item
-        txtFirstName.setFont(new Font("Arial", Font.BOLD, fontSize));
-        txtLastName.setFont(new Font("Arial", Font.BOLD, fontSize));
-        tfFirstName.setFont(new Font("Arial", Font.BOLD, fontSize));
-        tfLastName.setFont(new Font("Arial", Font.BOLD, fontSize));
-        // thêm vào row 2
+        tfLastName = new JTextField(15);
+
+        txtFirstName.setFont(font);
+        txtLastName.setFont(font);
+        tfFirstName.setFont(font);
+        tfLastName.setFont(font);
+
         pRow2.add(txtFirstName);
-        pRow2.add(Box.createHorizontalStrut(75));
+        pRow2.add(Box.createHorizontalStrut(68));
         pRow2.add(tfFirstName);
         pRow2.add(Box.createHorizontalStrut(3));
         pRow2.add(txtLastName);
@@ -84,137 +73,93 @@ public class bai1 extends JFrame implements ActionListener, ListSelectionListene
         JPanel pRow3 = new JPanel();
         JLabel txtAge = new JLabel("Tuổi: ");
         JLabel txtGender = new JLabel("Phái: ");
-        tfAge = new JTextField(36);
+        tfAge = new JTextField(35);
         radNu = new JRadioButton("Nữ");
-        // set font
-        txtAge.setFont(new Font("Arial", Font.BOLD, fontSize));
-        txtGender.setFont(new Font("Arial", Font.BOLD, fontSize));
-        tfAge.setFont(new Font("Arial", Font.BOLD, fontSize));
-        radNu.setFont(new Font("Arial", Font.BOLD, fontSize));
-        // thêm vào giao diện
+
+        txtAge.setFont(font);
+        txtGender.setFont(font);
+        tfAge.setFont(font);
+        radNu.setFont(font);
+
         pRow3.add(txtAge);
-        pRow3.add(Box.createHorizontalStrut(65));
+        pRow3.add(Box.createHorizontalStrut(61));
         pRow3.add(tfAge);
         pRow3.add(txtGender);
-        pRow3.add(Box.createHorizontalStrut(20));
+        pRow3.add(Box.createHorizontalStrut(24));
         pRow3.add(radNu);
 
         // row 4: lương
         JPanel pRow4 = new JPanel();
         JLabel txtLuong = new JLabel("Lương: ");
         tfLuong = new JTextField(45);
-        // set font
-        txtLuong.setFont(new Font("Arial", Font.BOLD, fontSize));
-        tfLuong.setFont(new Font("Arial", Font.BOLD, fontSize));
-        // thêm vào giao diện
+
+        txtLuong.setFont(font);
+        tfLuong.setFont(font);
+
         pRow4.add(txtLuong);
         pRow4.add(Box.createHorizontalStrut(44));
         pRow4.add(tfLuong);
 
-        // row table
-        JPanel pTable = new JPanel(new BorderLayout());
-        String[] columnNames = { "Mã NV", "Họ", "Tên", "Phái", "Tuổi", "Tiền Lương" };
-        // String[][] data = {
-        //     {"1", "", "", "", "", ""},
-        //     {"2", "", "", "", "", ""},
-        //     {"3", "", "", "", "", ""},
-        //     {"4", "", "", "", "", ""},
-        //     {"5", "", "", "", "", ""},
-        //     {"6", "", "", "", "", ""},
-        //     {"7", "", "", "", "", ""},
-        //     {"8", "", "", "", "", ""},
-        //     {"9", "", "", "", "", ""},
-        //     {"10", "", "", "", "", ""},
-        //     {"11", "", "", "", "", ""},
-        //     {"12", "", "", "", "", ""},
-        // };
-        // tableModel = new DefaultTableModel(data, columnNames);
-
-        // tạo table
-        tableModel = new DefaultTableModel(columnNames, 0);
-        table = new JTable(tableModel);
-        table.setFont(new Font("Arial", Font.PLAIN, fontSize));
+        // table
+        model = new DefaultTableModel(cols, 0);
+        table = new JTable(model);
         table.setRowHeight(25);
-        // set chiều dài cho từng cột của table
-        for (int i = 0; i < columnNames.length; i++)
-            table.getColumnModel().getColumn(i).setMinWidth(125);
-        // set font cho cột
-        JTableHeader header = table.getTableHeader();
-        header.setFont(new Font("Arial", Font.BOLD, fontSize));
-
-        JScrollPane scrollPane = new JScrollPane(table, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS,
-        JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
-        scrollPane.setPreferredSize(new Dimension(15, 250));
-
-        // thêm vào table panel
-        pTable.add(table.getTableHeader(), BorderLayout.NORTH);
-        pTable.add(table, BorderLayout.CENTER);
-        pTable.add(scrollPane, BorderLayout.EAST);
-
-        // thêm vào center panel
-        pCenter.add(pRow1);
-        pCenter.add(pRow2);
-        pCenter.add(pRow3);
-        pCenter.add(pRow4);
-        pCenter.add(pTable);
+        JScrollPane scr = new JScrollPane(table, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS,
+                JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
 
         // south panel
-        JPanel pSouth = new JPanel();
         Border loweredBevel = BorderFactory.createLoweredBevelBorder();
-        // south left panel
+        JPanel pSouth = new JPanel();
         JPanel pSouthLeft = new JPanel();
+        JPanel pSouthRight = new JPanel();
+
+        pSouthRight.setBorder(loweredBevel);
         pSouthLeft.setBorder(loweredBevel);
 
         JLabel txtTimID = new JLabel("Nhập mã số cần tìm: ");
-        txtTimID.setFont(new Font("Arial", Font.BOLD, fontSize));
         tfTimID = new JTextField(8);
-        tfTimID.setFont(new Font("Arial", Font.BOLD, fontSize));
-        // btn
         btnTimID = new JButton("Tìm");
-        btnTimID.setFont(new Font("Arial", Font.BOLD, fontSize));
-
-        // thêm vào South Left panel
-        pSouthLeft.add(txtTimID);
-        pSouthLeft.add(tfTimID);
-        pSouthLeft.add(btnTimID);
-
-        // south right panel
-        JPanel pSouthRight = new JPanel();
-        pSouthRight.setBorder(loweredBevel);
-        // btn
+        tfTimID.setFont(font);
+        txtTimID.setFont(font);
+        btnTimID.setFont(font);
         btnThem = new JButton("Thêm");
         btnXoaTrang = new JButton("Xoá Trắng");
         btnXoa = new JButton("Xoá");
         btnLuu = new JButton("Lưu");
-        // set font btn
-        btnThem.setFont(new Font("Arial", Font.BOLD, fontSize));
-        btnXoaTrang.setFont(new Font("Arial", Font.BOLD, fontSize));
-        btnXoa.setFont(new Font("Arial", Font.BOLD, fontSize));
-        btnLuu.setFont(new Font("Arial", Font.BOLD, fontSize));
 
-        // thêm vào South Right panel
-        pSouthRight.add(Box.createHorizontalStrut(20));
+        btnThem.setFont(font);
+        btnXoaTrang.setFont(font);
+        btnXoa.setFont(font);
+        btnLuu.setFont(font);
+
+        pSouthLeft.add(Box.createHorizontalStrut(2));
+        pSouthLeft.add(txtTimID);
+        pSouthLeft.add(tfTimID);
+        pSouthLeft.add(btnTimID);
+        pSouthLeft.add(Box.createHorizontalStrut(2));
+
+        pSouthRight.add(Box.createHorizontalStrut(2));
         pSouthRight.add(btnThem);
         pSouthRight.add(btnXoaTrang);
         pSouthRight.add(btnXoa);
         pSouthRight.add(btnLuu);
-        pSouthRight.add(Box.createHorizontalStrut(20));
+        pSouthRight.add(Box.createHorizontalStrut(2));
 
-        // thêm vào South panel
-        pSouth.add(pSouthLeft);
-        pSouth.add(pSouthRight);
+        JSplitPane spl = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT, pSouthLeft, pSouthRight);
 
-        // thêm vào giao diện
-        add(pNorth, BorderLayout.NORTH);
-        add(pCenter, BorderLayout.CENTER);
-        add(pSouth, BorderLayout.SOUTH);
+        pSouth.add(spl);
+        //
+        Box main = Box.createVerticalBox();
+        main.add(pNorth);
+        main.add(pRow1);
+        main.add(pRow2);
+        main.add(pRow3);
+        main.add(pRow4);
+        main.add(scr);
+        // main.add(spl);
+        main.add(pSouth);
 
-        // Lắng nghe sự kiện
-        btnTimID.addActionListener(this);
-        btnLuu.addActionListener(this);
-        btnThem.addActionListener(this);
-        btnXoa.addActionListener(this);
-        btnXoaTrang.addActionListener(this);
+        add(main);
     }
 
     public static void main(String[] args) {
