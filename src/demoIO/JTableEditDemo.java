@@ -15,7 +15,7 @@ public class JTableEditDemo extends JFrame implements ActionListener, MouseListe
 
 	JTextField txtHo, txtTen, txtMassv;
 	JButton btnAdd, btnRemove, btnExit, btnLuu;
-
+	String url = "C:/Users/Admin/Desktop/dangdan/Workspace/java/BaiTap/src/demoIO/";
 	DanhSachSinhVien ds;
 
 	public JTableEditDemo() {
@@ -57,14 +57,13 @@ public class JTableEditDemo extends JFrame implements ActionListener, MouseListe
 		LuuTru lt = new LuuTru();
 		ds = new DanhSachSinhVien();
 		try {
-			ds = (DanhSachSinhVien) lt.DocFile("data/dsSvien.txt");
+			ds = (DanhSachSinhVien) lt.DocFile(url + "data/dsSvien.txt");
 			System.out.println(ds.getSize());
 			for (int i = 0; i < ds.getSize(); i++) {
 				SinhVien sv = ds.getElement(i);
 				model.addRow(new Object[] { sv.getMssv(), sv.getHo(), sv.getTen() });
 			}
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 
@@ -110,7 +109,7 @@ public class JTableEditDemo extends JFrame implements ActionListener, MouseListe
 		else if (o.equals(btnLuu)) {
 			LuuTru lt = new LuuTru();
 			try {
-				lt.LuuFile(ds, "data/dsSVien.txt");
+				lt.LuuFile(ds, url + "data/dsSVien.txt");
 				System.out.println("done");
 			} catch (Exception e1) {
 				e1.printStackTrace();
