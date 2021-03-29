@@ -11,6 +11,7 @@ public class LuuTru {
 		ObjectOutputStream oos = null;
 		oos = new ObjectOutputStream(new FileOutputStream(filePath));
 		// xoá trắng file
+		// cũng như tạo file mới khi không tìm thấy file
 		oos.writeBytes("");
 		// ghi lại file
 		oos.writeObject(obj);
@@ -21,8 +22,7 @@ public class LuuTru {
 	}
 
 	public Object DocFile(String filePath) throws Exception {
-		ObjectInputStream ois = new ObjectInputStream(new FileInputStream(
-				filePath));
+		ObjectInputStream ois = new ObjectInputStream(new FileInputStream(filePath));
 
 		Object o = ois.readObject();
 

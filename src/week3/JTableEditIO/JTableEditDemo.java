@@ -2,6 +2,7 @@ package week3.JTableEditIO;
 
 import java.awt.*;
 import java.awt.event.*;
+import java.io.File;
 
 import javax.swing.*;
 import javax.swing.table.*;
@@ -23,7 +24,8 @@ public class JTableEditDemo extends JFrame implements ActionListener, MouseListe
     DefaultTableModel model;
     JTable table;
     private QuanLySach ds;
-    String url = "C:/Users/Admin/Desktop/dangdan/Workspace/java/BaiTap/src/week3/JTableEditIO/";
+    // lấy đường dẫn tới project - ngang cấp src
+    String workingDir = System.getProperty("user.dir") + "/";
 
     public JTableEditDemo() {
         super("Quản Lý Sách");
@@ -102,10 +104,17 @@ public class JTableEditDemo extends JFrame implements ActionListener, MouseListe
         add(spl);
 
         // Sự kiện
+
+        // kiểm tra và tạo file data
+        File f = new File(workingDir + "data");
+        if (!f.exists()) {
+            f.mkdirs();
+        }
+
         LuuTru data = new LuuTru();
         ds = new QuanLySach();
         try {
-            ds = (QuanLySach) data.DocFile(url + "data/dsSach.txt");
+            ds = (QuanLySach) data.DocFile(workingDir + "data/dsSach.txt");
             System.out.println(ds.getSize());
             for (int i = 0; i < ds.getSize(); i++) {
                 Sach sach = ds.getElement(i);
@@ -131,10 +140,10 @@ public class JTableEditDemo extends JFrame implements ActionListener, MouseListe
     @Override
     public void mouseClicked(MouseEvent e) {
         int row = table.getSelectedRow();
-		// lay dong dang chon tren table
-		txtMaSach.setText(table.getValueAt(row, 0).toString());
-		txtTenSach.setText(table.getValueAt(row, 1).toString());
-		txtSoTrang.setText(table.getValueAt(row, 2).toString());
+        // lay dong dang chon tren table
+        txtMaSach.setText(table.getValueAt(row, 0).toString());
+        txtTenSach.setText(table.getValueAt(row, 1).toString());
+        txtSoTrang.setText(table.getValueAt(row, 2).toString());
     }
 
     @Override
@@ -173,8 +182,8 @@ public class JTableEditDemo extends JFrame implements ActionListener, MouseListe
                         ds.themSach(sach);
                         model.addRow(new Object[] { txtMaSach.getText(), txtTenSach.getText(), num });
                     } else {
-                        JOptionPane.showMessageDialog(this, "Số lượng trang sách phải là số nguyên dương.",
-                                "thông báo", JOptionPane.OK_OPTION);
+                        JOptionPane.showMessageDialog(this, "Số lượng trang sách phải là số nguyên dương.", "thông báo",
+                                JOptionPane.OK_OPTION);
                         focusTextField(txtSoTrang);
                     }
                 } else {
@@ -204,7 +213,7 @@ public class JTableEditDemo extends JFrame implements ActionListener, MouseListe
         } else if (o.equals(btnLuu)) {
             LuuTru lt = new LuuTru();
             try {
-                lt.LuuFile(ds, url + "data/dsSach.txt");
+                lt.LuuFile(ds, workingDir + "data/dsSach.txt");
                 System.out.println("done");
             } catch (Exception e1) {
                 e1.printStackTrace();
