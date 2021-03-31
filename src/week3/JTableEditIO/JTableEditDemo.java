@@ -1,6 +1,5 @@
 package week3.JTableEditIO;
 
-import java.awt.*;
 import java.awt.event.*;
 import java.io.File;
 
@@ -14,18 +13,15 @@ public class JTableEditDemo extends JFrame implements ActionListener, MouseListe
      */
     private static final long serialVersionUID = 1L;
     String[] cols = { "Mã Sách", "Tên Sách", "Số Trang" };
-    private int fontSize = 14;
 
     JTextField txtMaSach, txtTenSach, txtSoTrang;
     JButton btnAdd, btnRemove, btnExit, btnLuu, btnXoaRong;
-    Font flb = new Font("Arial", Font.BOLD, fontSize);
-    Font fTxt = new Font("Arial", Font.PLAIN, fontSize);
 
     DefaultTableModel model;
     JTable table;
     private QuanLySach ds;
     // lấy đường dẫn tới project - ngang cấp src
-    String workingDir = System.getProperty("user.dir") + "/";
+    String workingDir = System.getProperty("user.dir") + "/src/week3/JTableEditIO/";
 
     public JTableEditDemo() {
         super("Quản Lý Sách");
@@ -50,21 +46,6 @@ public class JTableEditDemo extends JFrame implements ActionListener, MouseListe
         txtMaSach = new JTextField(25);
         txtTenSach = new JTextField(25);
         txtSoTrang = new JTextField(25);
-
-        // set font label + btn + textField
-        lbMaSach.setFont(flb);
-        lbTenSach.setFont(flb);
-        lbSL.setFont(flb);
-
-        btnAdd.setFont(flb);
-        btnRemove.setFont(flb);
-        btnLuu.setFont(flb);
-        btnExit.setFont(flb);
-        btnXoaRong.setFont(flb);
-
-        txtMaSach.setFont(fTxt);
-        txtTenSach.setFont(fTxt);
-        txtSoTrang.setFont(fTxt);
 
         // table
         model = new DefaultTableModel(cols, 0);
@@ -134,6 +115,7 @@ public class JTableEditDemo extends JFrame implements ActionListener, MouseListe
     }
 
     public static void main(String[] args) {
+
         new JTableEditDemo().setVisible(true);
     }
 

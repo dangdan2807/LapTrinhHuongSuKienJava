@@ -2,7 +2,6 @@ package week2;
 
 import javax.swing.*;
 import javax.swing.event.*;
-import javax.swing.border.*;
 
 import java.awt.*;
 
@@ -23,26 +22,21 @@ public class jListDemo extends JFrame implements ListSelectionListener {
 
         String[] entries = { "Entry 1", "Entry 2", "Entry 3", "Entry 4", "Entry 5", "Entry 6" };
         lstEntry = new JList<String>(entries);
-        lstEntry.setFont(new Font("Arial", Font.BOLD, 14));
         lstEntry.setVisibleRowCount(4);
         lstEntry.setPreferredSize(new Dimension(60, 120));
 
         JScrollPane listPane = new JScrollPane(lstEntry);
         JLabel lblSelected = new JLabel("Last Selected: ");
-        lblSelected.setFont(new Font("Arial", Font.BOLD, 14));
 
         txtSelected = new JTextField(15);
-        txtSelected.setFont(new Font("Arial", Font.BOLD, 14));
 
         JPanel pCen = new JPanel();
-        pCen.setBorder(BorderFactory.createTitledBorder(null, "Simple JList", TitledBorder.DEFAULT_JUSTIFICATION,
-                TitledBorder.DEFAULT_POSITION, new Font("Arial", Font.BOLD, 14)));
+        pCen.setBorder(BorderFactory.createTitledBorder(null, "Simple JList"));
         pCen.add(listPane);
         add(pCen, BorderLayout.CENTER);
 
         JPanel pSouth = new JPanel();
-        pSouth.setBorder(BorderFactory.createTitledBorder(null, "List Selection", TitledBorder.DEFAULT_JUSTIFICATION,
-                TitledBorder.DEFAULT_POSITION, new Font("Arial", Font.BOLD, 14)));
+        pSouth.setBorder(BorderFactory.createTitledBorder(null, "List Selection"));
         pSouth.add(lblSelected);
         pSouth.add(txtSelected);
         add(pSouth, BorderLayout.SOUTH);

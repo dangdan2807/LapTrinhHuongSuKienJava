@@ -25,26 +25,19 @@ public class bai2 extends JFrame implements ActionListener {
 
         // North panel
         JPanel pnNorth = new JPanel();
-        pnNorth.add(Box.createRigidArea(new Dimension(0, 40)));
         pnMain.add(pnNorth, BorderLayout.NORTH);
 
-        text = new JTextField();
-        text.setPreferredSize(new Dimension(330, 30));
-        text.setFont(new Font("Arial", Font.PLAIN, 14));
+        text = new JTextField(40);
         btnGeneral = new JButton("General");
-        btnGeneral.setPreferredSize(new Dimension(100, 30));
         pnNorth.add(text);
         pnNorth.add(btnGeneral);
 
         // Center panel
         JPanel pnCenter = new JPanel();
-        pnCenter.add(Box.createRigidArea(new Dimension(5, 5)));
         pnMain.add(pnCenter);
 
-        jList = new JTextArea(10, 1);
-        jList.setPreferredSize(new Dimension(435, 10));
+        jList = new JTextArea(14, 50);
         jList.setBorder(BorderFactory.createLineBorder(Color.gray, 1));
-        jList.setFont(new Font("Arial", Font.PLAIN, 14));
         pnCenter.add(jList);
 
         // Thêm vào giao diện

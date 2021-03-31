@@ -14,15 +14,7 @@ public class bai2 extends JFrame implements ActionListener, ListSelectionListene
      *
      */
     private static final long serialVersionUID = 4716763103987467161L;
-    private JButton btnSoChan;
-    private JButton btnSoLe;
-    private JButton btnSoNguyenTo;
-    private JButton btnBoTo;
-    private JButton btnXoa;
-    private JButton btnSum;
-    private JButton btnExit;
-    private JButton btnAdd;
-    private JButton btnRandom;
+    private JButton btnSoChan, btnSoLe, btnSoNguyenTo, btnBoTo, btnXoa, btnSum, btnExit, btnAdd, btnRandom;
     private JTextField txtInput;
     private JCheckBox chkSoAm;
     private JList<Integer> list;
@@ -37,7 +29,7 @@ public class bai2 extends JFrame implements ActionListener, ListSelectionListene
 
         //
         JLabel lblTitle = new JLabel("Thao tác trên JList - CheckBox");
-        lblTitle.setFont(new Font("Arial", Font.BOLD, 30));
+        lblTitle.setFont(new Font("Arial", Font.BOLD, 24));
         lblTitle.setForeground(Color.BLUE);
         // North panel
         JPanel pNorth = new JPanel();
@@ -48,8 +40,7 @@ public class bai2 extends JFrame implements ActionListener, ListSelectionListene
         JPanel pWest = new JPanel();
         pWest.setLayout(new GridLayout(7, 1, 0, 5));
         Border bdTitle = BorderFactory.createLineBorder(Color.RED, 2);
-        pWest.setBorder(BorderFactory.createTitledBorder(bdTitle, "Chọn tác vụ", TitledBorder.DEFAULT_JUSTIFICATION,
-                TitledBorder.DEFAULT_POSITION, new Font("Arial", Font.BOLD, 14)));
+        pWest.setBorder(BorderFactory.createTitledBorder(bdTitle, "Chọn tác vụ"));
         // btn
         btnSoChan = new JButton("Tô đen số chẳn");
         btnSoLe = new JButton("Tô đen số lẻ");
@@ -57,13 +48,6 @@ public class bai2 extends JFrame implements ActionListener, ListSelectionListene
         btnBoTo = new JButton("Bỏ tô đen");
         btnXoa = new JButton("Xoá các giá trị đang tô đen");
         btnSum = new JButton("Tổng giá trị trong List");
-        // set font
-        btnSoChan.setFont(new Font("Arial", Font.BOLD, 14));
-        btnSoLe.setFont(new Font("Arial", Font.BOLD, 14));
-        btnSoNguyenTo.setFont(new Font("Arial", Font.BOLD, 14));
-        btnBoTo.setFont(new Font("Arial", Font.BOLD, 14));
-        btnXoa.setFont(new Font("Arial", Font.BOLD, 14));
-        btnSum.setFont(new Font("Arial", Font.BOLD, 14));
         // thêm btn vào west panel
         pWest.add(btnSoChan);
         pWest.add(btnSoLe);
@@ -75,17 +59,12 @@ public class bai2 extends JFrame implements ActionListener, ListSelectionListene
         // center panel
         JPanel pCenter = new JPanel();
         pCenter.setLayout(new BoxLayout(pCenter, BoxLayout.Y_AXIS));
-        pCenter.setBorder(BorderFactory.createTitledBorder(bdTitle, "Nhập thông tin",
-                TitledBorder.DEFAULT_JUSTIFICATION, TitledBorder.DEFAULT_POSITION, new Font("Arial", Font.BOLD, 14)));
+        pCenter.setBorder(BorderFactory.createTitledBorder(bdTitle, "Nhập thông tin"));
         // btn center panel
         btnAdd = new JButton("Nhập");
-        btnAdd.setFont(new Font("Arial", Font.BOLD, 14));
         txtInput = new JTextField(8);
-        txtInput.setFont(new Font("Arial", Font.BOLD, 14));
         chkSoAm = new JCheckBox("Cho nhập số âm");
-        chkSoAm.setFont(new Font("Arial", Font.BOLD, 14));
         btnRandom = new JButton("Tạo số ngẫu nhiên");
-        btnAdd.setFont(new Font("Arial", Font.BOLD, 14));
 
         // panel con ở phía trên
         JPanel pChildNorth = new JPanel();
@@ -117,7 +96,6 @@ public class bai2 extends JFrame implements ActionListener, ListSelectionListene
         pSouth.setBackground(Color.decode("#C0C0C0"));
         pSouth.add(Box.createRigidArea(new Dimension(0, 50)));
         btnExit = new JButton("Đóng chương trình");
-        btnExit.setFont(new Font("Arial", Font.BOLD, 14));
 
         pSouth.add(btnExit);
 

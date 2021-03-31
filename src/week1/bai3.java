@@ -12,19 +12,9 @@ public class bai3 extends JFrame implements ActionListener {
      *
      */
     private static final long serialVersionUID = 1L;
-    private JButton btnGiai;
-    private JButton btnDelete;
-    private JButton btnExit;
-    private JButton btnBlue;
-    private JButton btnRed;
-    private JButton btnYellow;
-    private JRadioButton radCong;
-    private JRadioButton radTru;
-    private JRadioButton radNhan;
-    private JRadioButton radChia;
-    private JTextField input1;
-    private JTextField input2;
-    private JTextField kq;
+    private JButton btnGiai, btnDelete, btnExit, btnBlue, btnRed, btnYellow;
+    private JRadioButton radCong, radTru, radNhan, radChia;
+    private JTextField input1, input2, kq;
     private JLabel ltlTitle;
 
     public bai3() {
@@ -42,37 +32,30 @@ public class bai3 extends JFrame implements ActionListener {
         JPanel pnNorth = new JPanel();
         pnNorth.add(Box.createRigidArea(new Dimension(0, 50)));
         ltlTitle = new JLabel("Cộng Trừ Nhân Chia");
-        ltlTitle.setFont(new Font("Arial", Font.BOLD, 24));
+        ltlTitle.setFont(new Font("Arial", Font.BOLD, 16));
         ltlTitle.setForeground(Color.BLUE);
         pnNorth.add(ltlTitle);
         pnMain.add(pnNorth, BorderLayout.NORTH);
 
         // west panel
         JPanel pnWest = new JPanel();
-        pnWest.setLayout(new GridLayout(6, 1, 0, 10));
+        pnWest.setLayout(new GridLayout(7, 1, 0, 10));
         pnWest.setBackground(Color.decode("#C0C0C0"));
         pnWest.setPreferredSize(new Dimension(120, 0));
         pnMain.add(pnWest, BorderLayout.WEST);
         // border
         Border lineBorder = BorderFactory.createLineBorder(Color.decode("#00ffff"), 2);
-        Border borderPnEast = BorderFactory.createTitledBorder(lineBorder, "Chọn tác vụ",
-                TitledBorder.DEFAULT_JUSTIFICATION, TitledBorder.DEFAULT_POSITION, new Font("Arial", Font.BOLD, 14));
+        Border borderPnEast = BorderFactory.createTitledBorder(lineBorder, "Chọn tác vụ");
         pnWest.setBorder(borderPnEast);
 
         // btn
         btnGiai = new JButton("Giải");
-        btnGiai.add(Box.createRigidArea(new Dimension(60, 25)));
-        btnGiai.setFont(new Font("Arial", Font.BOLD, 14));
         btnGiai.setMnemonic(KeyEvent.VK_G);
 
         btnDelete = new JButton("Xoá");
-        btnDelete.add(Box.createRigidArea(new Dimension(60, 25)));
-        btnDelete.setFont(new Font("Arial", Font.BOLD, 14));
         btnDelete.setMnemonic(KeyEvent.VK_D);
-        
+
         btnExit = new JButton("Thoát");
-        btnExit.add(Box.createRigidArea(new Dimension(60, 25)));
-        btnExit.setFont(new Font("Arial", Font.BOLD, 14));
         btnExit.setMnemonic(KeyEvent.VK_E);
 
         pnWest.add(btnGiai);
@@ -84,30 +67,18 @@ public class bai3 extends JFrame implements ActionListener {
         pnCenter.setLayout(new BoxLayout(pnCenter, BoxLayout.Y_AXIS));
         pnMain.add(pnCenter, BorderLayout.CENTER);
         // border
-        Border borderPnCenter = BorderFactory.createTitledBorder(lineBorder, "Tính Toán",
-                TitledBorder.DEFAULT_JUSTIFICATION, TitledBorder.DEFAULT_POSITION, new Font("Arial", Font.BOLD, 14));
+        Border borderPnCenter = BorderFactory.createTitledBorder(lineBorder, "Tính Toán");
         pnCenter.setBorder(borderPnCenter);
 
         JLabel text1 = new JLabel("Nhập a: ");
-        text1.setFont(new Font("Arial", Font.BOLD, 14));
-
         JLabel text2 = new JLabel("Nhập b: ");
-        text2.setFont(new Font("Arial", Font.BOLD, 14));
-
         JLabel text3 = new JLabel("Kết quả: ");
-        text3.setFont(new Font("Arial", Font.BOLD, 14));
 
-        input1 = new JTextField();
-        input1.setPreferredSize(new Dimension(300, 30));
-        input1.setFont(new Font("Arial", Font.BOLD, 14));
+        input1 = new JTextField(32);
 
-        input2 = new JTextField();
-        input2.setPreferredSize(new Dimension(300, 30));
-        input2.setFont(new Font("Arial", Font.BOLD, 14));
+        input2 = new JTextField(32);
 
-        kq = new JTextField();
-        kq.setPreferredSize(new Dimension(300, 30));
-        kq.setFont(new Font("Arial", Font.BOLD, 14));
+        kq = new JTextField(32);
         // disable text field
         kq.setEditable(false);
 
@@ -127,8 +98,7 @@ public class bai3 extends JFrame implements ActionListener {
         JPanel pnRow3 = new JPanel();
         pnRow3.setLayout(new BoxLayout(pnRow3, BoxLayout.X_AXIS));
         pnRow3.add(Box.createHorizontalStrut(60));
-        Border borderPnRow3 = BorderFactory.createTitledBorder(lineBorder, "Phép Toán",
-                TitledBorder.DEFAULT_JUSTIFICATION, TitledBorder.DEFAULT_POSITION, new Font("Arial", Font.BOLD, 14));
+        Border borderPnRow3 = BorderFactory.createTitledBorder(lineBorder, "Phép Toán");
 
         // panel con để tạo khoảng cách đẩy phần radio vào
         JPanel pnChild = new JPanel();
@@ -139,13 +109,9 @@ public class bai3 extends JFrame implements ActionListener {
 
         // Tạo radio
         radCong = new JRadioButton("Cộng", true);
-        radCong.setFont(new Font("Arial", Font.BOLD, 14));
         radTru = new JRadioButton("Trừ");
-        radTru.setFont(new Font("Arial", Font.BOLD, 14));
         radNhan = new JRadioButton("Nhân");
-        radNhan.setFont(new Font("Arial", Font.BOLD, 14));
         radChia = new JRadioButton("Chia");
-        radChia.setFont(new Font("Arial", Font.BOLD, 14));
         // thêm radio vào nhóm để tránh bị chọn nhiều cái 1 lúc
         ButtonGroup btnGr = new ButtonGroup();
         btnGr.add(radCong);

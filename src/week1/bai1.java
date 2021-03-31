@@ -27,7 +27,7 @@ public class bai1 extends JFrame implements ActionListener {
     public bai1() {
         setTitle("Giải phương trình bậc 2");
         setDefaultCloseOperation(EXIT_ON_CLOSE);
-        setSize(600, 470);
+        setSize(500, 350);
         setLocationRelativeTo(null);
         setResizable(false);
 
@@ -36,10 +36,9 @@ public class bai1 extends JFrame implements ActionListener {
 
         // North panel
         JPanel pnNorth = new JPanel();
-        pnNorth.add(Box.createRigidArea(new Dimension(0, 50)));
         pnNorth.setBackground(Color.decode("#00FFFF"));
         JLabel ltlTitle = new JLabel("GIẢI PHƯƠNG TRÌNH BẬC HAI");
-        ltlTitle.setFont(new Font("Arial", Font.BOLD, 20));
+        ltlTitle.setFont(new Font("Arial", Font.BOLD, 16));
         pnNorth.add(ltlTitle);
         pnMain.add(pnNorth, BorderLayout.NORTH);
         pnMain.setBackground(Color.decode("#00FFFF"));
@@ -47,73 +46,57 @@ public class bai1 extends JFrame implements ActionListener {
         // center panel
         JPanel pnCenter = new JPanel();
         pnCenter.setLayout(new BoxLayout(pnCenter, BoxLayout.Y_AXIS));
-        pnCenter.add(Box.createRigidArea(new Dimension(0, 20)));
+        pnCenter.add(Box.createRigidArea(new Dimension(0, 26)));
         pnMain.add(pnCenter, BorderLayout.CENTER);
 
         // Dòng 1
         JPanel pnRow1 = new JPanel();
-        pnRow1.add(Box.createRigidArea(new Dimension(0, 50)));
         ltlText1 = new JLabel("Nhập a: ");
-        ltlText1.setFont(new Font("Arial", Font.BOLD, 14));
         // tạo khoản các giứ label và textField
         JPanel pnSpace1 = new JPanel();
         pnSpace1.add(ltlText1);
         pnSpace1.add(Box.createHorizontalStrut(60));
 
-        tfInput1 = new JTextField();
-        tfInput1.setPreferredSize(new Dimension(300, 30));
-        tfInput1.setFont(new Font("Arial", Font.BOLD, 14));
+        tfInput1 = new JTextField(30);
         pnRow1.add(pnSpace1);
         pnRow1.add(tfInput1);
         pnCenter.add(pnRow1);
 
         // dòng 2
         JPanel pnRow2 = new JPanel();
-        pnRow2.add(Box.createRigidArea(new Dimension(0, 50)));
         ltlText2 = new JLabel("Nhập b: ");
-        ltlText2.setFont(new Font("Arial", Font.BOLD, 14));
         // tạo khoản các giứ label và textField
         JPanel pnSpace2 = new JPanel();
         pnSpace2.add(ltlText2);
         pnSpace2.add(Box.createHorizontalStrut(60));
 
-        tfInput2 = new JTextField();
-        tfInput2.setPreferredSize(new Dimension(300, 30));
-        tfInput2.setFont(new Font("Arial", Font.BOLD, 14));
+        tfInput2 = new JTextField(30);
         pnRow2.add(pnSpace2);
         pnRow2.add(tfInput2);
         pnCenter.add(pnRow2);
 
         // dòng 3
         JPanel pnRow3 = new JPanel();
-        pnRow3.add(Box.createRigidArea(new Dimension(0, 50)));
         ltlText3 = new JLabel("Nhập c: ");
-        ltlText3.setFont(new Font("Arial", Font.BOLD, 14));
         // tạo khoản các giứ label và textField
         JPanel pnSpace3 = new JPanel();
         pnSpace3.add(ltlText3);
         pnSpace3.add(Box.createHorizontalStrut(60));
 
-        tfInput3 = new JTextField();
-        tfInput3.setPreferredSize(new Dimension(300, 30));
-        tfInput3.setFont(new Font("Arial", Font.BOLD, 14));
+        tfInput3 = new JTextField(30);
         pnRow3.add(pnSpace3);
         pnRow3.add(tfInput3);
         pnCenter.add(pnRow3);
 
         // dòng 4
         JPanel pnRow4 = new JPanel();
-        pnRow4.add(Box.createRigidArea(new Dimension(0, 50)));
         ltlText4 = new JLabel("Kết quả: ");
-        ltlText4.setFont(new Font("Arial", Font.BOLD, 14));
         // tạo khoản các giứ label và textField
         JPanel pnSpace4 = new JPanel();
         pnSpace4.add(ltlText4);
         pnSpace4.add(Box.createHorizontalStrut(60));
 
-        tfInput4 = new JTextField();
-        tfInput4.setPreferredSize(new Dimension(300, 30));
-        tfInput4.setFont(new Font("Arial", Font.BOLD, 14));
+        tfInput4 = new JTextField(30);
         tfInput4.setEditable(false);
         pnRow4.add(pnSpace4);
         pnRow4.add(tfInput4);
@@ -121,23 +104,18 @@ public class bai1 extends JFrame implements ActionListener {
 
         // south panel
         JPanel pnSouth = new JPanel();
-        Border titleBorder = BorderFactory.createTitledBorder(null, "Chọn tác vụ", TitledBorder.DEFAULT_JUSTIFICATION,
-                TitledBorder.DEFAULT_POSITION, new Font("Arial", Font.BOLD, 14));
+        Border titleBorder = BorderFactory.createTitledBorder(null, "Chọn tác vụ");
         pnSouth.setBorder(titleBorder);
-        pnSouth.add(Box.createRigidArea(new Dimension(0, 50)));
         pnMain.add(pnSouth, BorderLayout.SOUTH);
 
         // btn
         btnGiai = new JButton("Giải");
-        btnGiai.setFont(new Font("Arial", Font.BOLD, 14));
         btnGiai.setMnemonic(KeyEvent.VK_G);
 
         btnDelete = new JButton("Xoá rỗng");
-        btnDelete.setFont(new Font("Arial", Font.BOLD, 14));
         btnDelete.setMnemonic(KeyEvent.VK_X);
 
         btnExit = new JButton("Thoát");
-        btnExit.setFont(new Font("Arial", Font.BOLD, 14));
         btnExit.setMnemonic(KeyEvent.VK_T);
         // thêm nút vào south panel
         pnSouth.add(btnGiai);

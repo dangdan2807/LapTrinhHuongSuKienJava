@@ -35,7 +35,7 @@ public class bai1 extends JFrame implements ActionListener, ListSelectionListene
         // north panel
         JPanel pNorth = new JPanel();
         lbTitle = new JLabel("THÔNG TIN NHÂN VIÊN");
-        lbTitle.setFont(new Font("Arial", Font.BOLD, 24));
+        lbTitle.setFont(new Font("Arial", Font.BOLD, 18));
         lbTitle.setForeground(Color.BLUE);
         pNorth.add(lbTitle);
 
