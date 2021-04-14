@@ -2,18 +2,20 @@ package QuanLySach;
 
 import java.awt.*;
 import java.awt.event.*;
+import java.util.Calendar;
 
 import javax.swing.*;
 import javax.swing.table.*;
 
-public class JTableEdit extends JFrame implements ActionListener, MouseListener {
+public class QuanLySachGUI extends JFrame implements ActionListener, MouseListener {
 
     /**
      *
      */
     private static final long serialVersionUID = 1L;
 
-    private JTextField txtMaSach, txtTuaSach, txtTacGia, txtNamSx, txtNxb, txtSoTrang, txtDonGia, txtIsbn;
+    private JTextField txtMaSach, txtTuaSach, txtTacGia, txtNamSX, txtNxb, txtSoTrang, txtDonGia, txtIsbn;
+    private JLabel lbShowMessage;
     private JButton btnThem, btnXoaRong, btnXoa, btnSua, btnLuu;
     String[] cols = { "Mã sách", "Tựa sách", "Tác giả", "Năm sản xuất", "Nhà xuất bản", "Số trang", "Đơn giá", "ISBN" };
     private DefaultTableModel modelTable;
@@ -22,9 +24,9 @@ public class JTableEdit extends JFrame implements ActionListener, MouseListener 
 
     private QuanLySach ds;
 
-    public JTableEdit() {
+    public QuanLySachGUI() {
         setTitle("Quản Lý Sách");
-        setSize(900, 500);
+        setSize(1100, 500);
         setResizable(false);
         setLocationRelativeTo(null);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
@@ -40,24 +42,26 @@ public class JTableEdit extends JFrame implements ActionListener, MouseListener 
         JPanel pDuoi = new JPanel();
 
         // panel trên
-        pTren.setLayout(new GridLayout(5, 4, 10, 20));
-        pTren.setPreferredSize(new Dimension(900, 200));
+        pTren.setLayout(new GridLayout(6, 2, 10, 10));
         pTren.setBorder(BorderFactory.createTitledBorder(null, "Records Editor"));
 
         JLabel lbMaSach = new JLabel("Mã sách:");
         JLabel lbTuaSach = new JLabel("Tựa sách:");
         JLabel lbTacGia = new JLabel("Tác giả");
-        JLabel lbNsx = new JLabel("Năm sản xuẩt: ");
+        JLabel lbNamSX = new JLabel("Năm sản xuẩt: ");
         JLabel lbNxb = new JLabel("Nhà xuất bản: ");
         JLabel lbSoTrang = new JLabel("Số trang: ");
         JLabel lbDonGia = new JLabel("Đơn Giá");
         JLabel lbIsbn = new JLabel("International Standard Book Number (ISBN):");
         JLabel lbTimKiem = new JLabel("Tìm theo mã Sách");
+        lbShowMessage = new JLabel("");
+        lbShowMessage.setForeground(Color.RED);
+        lbShowMessage.setFont(new Font("Arial", Font.ITALIC, 12));
 
         txtMaSach = new JTextField(15);
         txtTuaSach = new JTextField(15);
         txtTacGia = new JTextField(15);
-        txtNamSx = new JTextField(15);
+        txtNamSX = new JTextField(15);
         txtNxb = new JTextField(15);
         txtSoTrang = new JTextField(15);
         txtDonGia = new JTextField(15);
@@ -71,8 +75,8 @@ public class JTableEdit extends JFrame implements ActionListener, MouseListener 
         pTren.add(txtTuaSach);
         pTren.add(lbTacGia);
         pTren.add(txtTacGia);
-        pTren.add(lbNsx);
-        pTren.add(txtNamSx);
+        pTren.add(lbNamSX);
+        pTren.add(txtNamSX);
         pTren.add(lbNxb);
         pTren.add(txtNxb);
         pTren.add(lbSoTrang);
@@ -81,6 +85,9 @@ public class JTableEdit extends JFrame implements ActionListener, MouseListener 
         pTren.add(txtDonGia);
         pTren.add(lbIsbn);
         pTren.add(txtIsbn);
+        pTren.add(new JLabel(""));
+        pTren.add(new JLabel(""));
+        pTren.add(lbShowMessage);
 
         // panel giữa
         btnThem = new JButton("Thêm");
@@ -150,26 +157,29 @@ public class JTableEdit extends JFrame implements ActionListener, MouseListener 
     }
 
     public static void main(String[] args) {
-        new JTableEdit().setVisible(true);
+        new QuanLySachGUI().setVisible(true);
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
         Object o = e.getSource();
         if (o.equals(btnThem)) {
-            if (txtMaSach.getText().equals("") || txtTuaSach.getText().equals("") || txtTacGia.getText().equals("")
-                    || txtNxb.getText().equals("") || txtNamSx.getText().equals("") || txtSoTrang.getText().equals("")
-                    || txtDonGia.getText().equals("") || txtIsbn.getText().equals("")) {
-                JOptionPane.showMessageDialog(this, "Thiếu dữ liệu đầu vào");
-            } else {
-                themSachMoi();
+            if (kiemTraData()) {
+                boolean result = themSachMoi();
+                if (result) {
+                    lbShowMessage.setText("Thêm thành công 1 cuốn sách.");
+                    int index = ds.getSize() - 1;
+                    table.setRowSelectionInterval(index, index);
+                } else {
+                    showMessage("Error: Trùng mã sách !!!", txtMaSach);
+                }
             }
         } else if (o.equals(btnXoaRong)) {
             txtMaSach.setText("");
             txtTuaSach.setText("");
             txtTacGia.setText("");
             txtNxb.setText("");
-            txtNamSx.setText("");
+            txtNamSX.setText("");
             txtSoTrang.setText("");
             txtDonGia.setText("");
             txtIsbn.setText("");
@@ -182,17 +192,16 @@ public class JTableEdit extends JFrame implements ActionListener, MouseListener 
                 select = JOptionPane.showConfirmDialog(this, "Bạn có muốn xoá dòng đã chọn ?", "Cảnh báo",
                         JOptionPane.YES_NO_OPTION);
                 if (select == JOptionPane.YES_OPTION) {
+                    String maSach = txtMaSach.getText().trim();
+                    cboSach.removeItemAt(row + 1);
                     modelTable.removeRow(row);
                     ds.xoaSach(row);
+                    showMessage("Xóa thành công sách có mã: " + maSach, txtMaSach);
                 }
             }
         } else if (o.equals(btnSua)) {
-            if (txtMaSach.getText().equals("") || txtTuaSach.getText().equals("") || txtTacGia.getText().equals("")
-                    || txtNxb.getText().equals("") || txtNamSx.getText().equals("") || txtSoTrang.getText().equals("")
-                    || txtDonGia.getText().equals("") || txtIsbn.getText().equals("")) {
-                JOptionPane.showMessageDialog(this, "Thiếu dữ liệu đầu vào");
-            } else {
-                int namSX = Integer.parseInt(txtNamSx.getText());
+            if (kiemTraData()) {
+                int namSX = Integer.parseInt(txtNamSX.getText());
                 int soTrang = Integer.parseInt(txtSoTrang.getText());
                 double donGia = Double.parseDouble(txtDonGia.getText());
                 int row = table.getSelectedRow();
@@ -200,33 +209,32 @@ public class JTableEdit extends JFrame implements ActionListener, MouseListener 
 
                 String maSach = txtMaSach.getText();
                 if (s.getMaSach().equals(maSach)) {
+                    // cập nhật trong danh sách
                     s.setTuaSach(txtTuaSach.getText());
                     s.setTacGia(txtTacGia.getText());
-                    s.setNxb(txtNxb.getText());
                     s.setNamSx(namSX);
+                    s.setNxb(txtNxb.getText());
                     s.setSoTrang(soTrang);
                     s.setDonGia(donGia);
                     s.setISBN(txtIsbn.getText());
+                    // cập nhật trong table
                     modelTable.setValueAt(txtTuaSach.getText(), row, 1);
                     modelTable.setValueAt(txtTacGia.getText(), row, 2);
-                    modelTable.setValueAt(txtNxb.getText(), row, 3);
-                    modelTable.setValueAt(namSX, row, 4);
+                    modelTable.setValueAt(namSX, row, 3);
+                    modelTable.setValueAt(txtNxb.getText(), row, 4);
                     modelTable.setValueAt(soTrang, row, 5);
                     modelTable.setValueAt(donGia, row, 6);
                     modelTable.setValueAt(txtIsbn.getText(), row, 7);
-                    System.out.println("cập nhật sách thành công");
+                    showMessage("Cập nhật sách thành công", txtMaSach);
                 } else {
-                    boolean result = themSachMoi();
-                    if (result) {
-                        JOptionPane.showMessageDialog(this, "Mã sách mới, tiến hành thêm sách mới", "Thông báo",
-                                JOptionPane.INFORMATION_MESSAGE);
-                    }
+                    showMessage("Error: Không tìm thấy mã sách !!!", txtMaSach);
                 }
             }
         } else if (o.equals(btnLuu)) {
             LuuTru_Character lt = new LuuTru_Character();
             lt.LuuFile(ds.getDS());
-            System.out.println("done........");
+            // System.out.println("Luu danh sach thanh cong");
+            showMessage("Lưu danh sách thành công", txtMaSach);
         } else if (o.equals(cboSach)) {
             String ma = cboSach.getSelectedItem().toString();
             String temp = "";
@@ -269,26 +277,35 @@ public class JTableEdit extends JFrame implements ActionListener, MouseListener 
 
     }
 
-    public boolean themSachMoi() {
-        boolean result;
-        int namSX = Integer.parseInt(txtNamSx.getText());
-        int soTrang = Integer.parseInt(txtSoTrang.getText());
-        double donGia = Double.parseDouble(txtDonGia.getText());
-        Sach s = new Sach(txtMaSach.getText(), txtTuaSach.getText(), txtTacGia.getText(), txtNxb.getText(), namSX,
-                soTrang, donGia, txtIsbn.getText());
+    private boolean themSachMoi() {
+        boolean result = false;
+        String maSach = txtMaSach.getText().trim();
+        String tuaSach = txtTuaSach.getText().trim();
+        String tacGia = txtTacGia.getText().trim();
+        String nxb = txtNxb.getText().trim();
+        String ISBN = txtIsbn.getText().trim();
+        String nam = txtNamSX.getText().trim();
+        String trang = txtSoTrang.getText().trim();
+        String gia = txtDonGia.getText().trim();
+
+        int namSX = nam.length() == 0 ? 0 : Integer.parseInt(nam);
+        int soTrang = trang.length() == 0 ? 0 : Integer.parseInt(trang);
+        double donGia = gia.length() == 0 ? 0 : Double.parseDouble(gia);
+
+        Sach s = new Sach(maSach, tuaSach, tacGia, namSX, nxb, soTrang, donGia, ISBN);
 
         result = ds.themSach(s);
         if (result) {
-            modelTable.addRow(new Object[] { txtMaSach.getText(), txtTuaSach.getText(), txtTacGia.getText(),
-                    txtNxb.getText(), namSX, soTrang, donGia, txtIsbn.getText() });
-            cboSach.addItem(txtMaSach.getText());
-        } else {
-            JOptionPane.showMessageDialog(this, "Sách đã tồn tại !!!", "Cảnh báo", JOptionPane.WARNING_MESSAGE);
+            // thêm vào table
+            modelTable.addRow(new Object[] { maSach, tuaSach, tacGia, namSX, nxb, soTrang, donGia, ISBN });
+            // thêm vào danh sách id
+            cboSach.addItem(maSach);
+            return true;
         }
-        return result;
+        return false;
     }
 
-    public void timSach(String maSach) {
+    private void timSach(String maSach) {
         String temp = "";
         if (maSach.equals("None")) {
             for (int i = 0; i < table.getRowCount(); i++) {
@@ -311,14 +328,99 @@ public class JTableEdit extends JFrame implements ActionListener, MouseListener 
         }
     }
 
-    public void chonDong(int row) {
+    private void chonDong(int row) {
         txtMaSach.setText(table.getValueAt(row, 0).toString());
         txtTuaSach.setText(table.getValueAt(row, 1).toString());
         txtTacGia.setText(table.getValueAt(row, 2).toString());
-        txtNxb.setText(table.getValueAt(row, 3).toString());
-        txtNamSx.setText(table.getValueAt(row, 4).toString());
+        txtNamSX.setText(table.getValueAt(row, 3).toString());
+        txtNxb.setText(table.getValueAt(row, 4).toString());
         txtSoTrang.setText(table.getValueAt(row, 5).toString());
         txtDonGia.setText(table.getValueAt(row, 6).toString());
         txtIsbn.setText(table.getValueAt(row, 7).toString());
+    }
+
+    private void showMessage(String message, JTextField txt) {
+        lbShowMessage.setText(message);
+        txt.requestFocus();
+    }
+
+    // kiểm tra dữ liệu đầu vào
+    private boolean kiemTraData() {
+        String maSach = txtMaSach.getText().trim();
+        String tuaSach = txtTuaSach.getText().trim();
+        String tacGia = txtTacGia.getText().trim();
+        String namSX = txtNamSX.getText().trim();
+        String nxb = txtNxb.getText().trim();
+        String soTrang = txtSoTrang.getText().trim();
+        String donGia = txtDonGia.getText().trim();
+        String isbn = txtIsbn.getText().trim();
+
+        if (!(maSach.length() > 0 && maSach.matches("[A-Z]\\d{3}"))) {
+            showMessage("Error: Mã sách phải theo mẫu: [A-Z]\\d{3}", txtMaSach);
+            return false;
+        }
+
+        if (!(tuaSach.length() > 0 && tuaSach.matches("[a-zA-Z ]+"))) {
+            showMessage("Error: Tựa sách theo mẫu: [a-zA-Z ]+", txtTuaSach);
+            return false;
+        }
+
+        if (!(tacGia.length() > 0 && tacGia.matches("[a-zA-Z ]+"))) {
+            showMessage("Error: Tác giả theo mẫu: [a-zA-Z ]+", txtTacGia);
+            return false;
+        }
+
+        if (namSX.length() > 0) {
+            try {
+                int nam = Integer.parseInt(namSX);
+                int namHienTai = Calendar.getInstance().get(Calendar.YEAR);
+                if (nam < 1900 && nam > namHienTai) {
+                    showMessage("Error: Năm > 1900 và năm < " + namHienTai, txtNamSX);
+                    return false;
+                }
+            } catch (Exception e) {
+                showMessage("Error: Năm xuất bản phải nhập số.", txtNamSX);
+                return false;
+            }
+        }
+
+        if (!(nxb.length() > 0 && nxb.matches("[a-zA-Z ]+"))) {
+            showMessage("Error: Nhà xuất bản theo mẫu: [a-zA-Z ]+", txtTacGia);
+            return false;
+        }
+
+        if (soTrang.length() > 0) {
+            try {
+                int num = Integer.parseInt(soTrang);
+                if (num <= 0) {
+                    showMessage("Error: Số trang phải nhập số nguyên dương.", txtSoTrang);
+                    return false;
+                }
+            } catch (Exception e) {
+                showMessage("Error: Số trang phải nhập số nguyên dương.", txtSoTrang);
+                return false;
+            }
+        }
+
+        if (donGia.length() > 0) {
+            try {
+                double num = Double.parseDouble(donGia);
+                if (num < 0) {
+                    showMessage("Error: Đơn giá phải > 0.", txtDonGia);
+                    return false;
+                }
+            } catch (NumberFormatException ex) {
+                showMessage("Error: Đơn giá phải nhập số.", txtDonGia);
+                return false;
+            }
+        }
+
+        if (isbn.length() > 0)
+            if (!isbn.matches("\\d+(-\\d+){3,4}")) {
+                showMessage("Error: ISBN có mẫu dạng  X-X-X-X  (hoặc X-X-X-X-X).", txtIsbn);
+                return false;
+            }
+
+        return true;
     }
 }

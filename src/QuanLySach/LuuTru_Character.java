@@ -44,10 +44,10 @@ public class LuuTru_Character {
             while (br.ready()) {
                 String line = br.readLine();
                 String[] s = line.split(";");
-                int namSX = Integer.parseInt(s[4]);
+                int namSX = Integer.parseInt(s[3]);
                 int soTrang = Integer.parseInt(s[5]);
                 double donGia = Double.parseDouble(s[6]);
-                Sach sach = new Sach(s[0], s[1], s[2], s[3], namSX, soTrang, donGia, s[7]);
+                Sach sach = new Sach(s[0], s[1], s[2], namSX, s[4], soTrang, donGia, s[7]);
                 ds.add(sach);
             }
             br.close();

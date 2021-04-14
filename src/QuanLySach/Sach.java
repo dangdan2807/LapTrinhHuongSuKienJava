@@ -71,13 +71,13 @@ public class Sach {
 
     public Sach() {
     }
-    
+
     public Sach(String maSach) {
         this.maSach = maSach;
     }
 
-    public Sach(String maSach, String tuaSach, String tacGia, String nxb, int namSx, int soTrang,
-            double donGia, String ISBN) {
+    public Sach(String maSach, String tuaSach, String tacGia, int namSx, String nxb, int soTrang, double donGia,
+            String ISBN) {
         this.maSach = maSach;
         this.tuaSach = tuaSach;
         this.tacGia = tacGia;
