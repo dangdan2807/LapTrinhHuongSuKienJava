@@ -200,15 +200,14 @@ public class QuanLySachGUI extends JFrame implements ActionListener, MouseListen
                 }
             }
         } else if (o.equals(btnSua)) {
-            if (kiemTraData()) {
-                int namSX = Integer.parseInt(txtNamSX.getText());
-                int soTrang = Integer.parseInt(txtSoTrang.getText());
-                double donGia = Double.parseDouble(txtDonGia.getText());
-                int row = table.getSelectedRow();
-                Sach s = ds.getElement(row);
-
-                String maSach = txtMaSach.getText();
-                if (s.getMaSach().equals(maSach)) {
+            int namSX = Integer.parseInt(txtNamSX.getText());
+            int soTrang = Integer.parseInt(txtSoTrang.getText());
+            double donGia = Double.parseDouble(txtDonGia.getText());
+            int row = table.getSelectedRow();
+            String maSach = txtMaSach.getText();
+            Sach s = ds.getElement(row);
+            if (s.getMaSach().equals(maSach)) {
+                if (kiemTraData()) {
                     // cập nhật trong danh sách
                     s.setTuaSach(txtTuaSach.getText());
                     s.setTacGia(txtTacGia.getText());
@@ -226,9 +225,9 @@ public class QuanLySachGUI extends JFrame implements ActionListener, MouseListen
                     modelTable.setValueAt(donGia, row, 6);
                     modelTable.setValueAt(txtIsbn.getText(), row, 7);
                     showMessage("Cập nhật sách thành công", txtMaSach);
-                } else {
-                    showMessage("Error: Không tìm thấy mã sách !!!", txtMaSach);
                 }
+            } else {
+                showMessage("Error: Không tìm thấy mã sách !!!", txtMaSach);
             }
         } else if (o.equals(btnLuu)) {
             LuuTru_Character lt = new LuuTru_Character();
@@ -374,7 +373,7 @@ public class QuanLySachGUI extends JFrame implements ActionListener, MouseListen
             try {
                 int nam = Integer.parseInt(namSX);
                 int namHienTai = Calendar.getInstance().get(Calendar.YEAR);
-                if (nam < 1900 && nam > namHienTai) {
+                if (nam < 1900 || nam > namHienTai) {
                     showMessage("Error: Năm > 1900 và năm < " + namHienTai, txtNamSX);
                     return false;
                 }
