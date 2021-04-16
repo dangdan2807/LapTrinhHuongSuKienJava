@@ -359,13 +359,13 @@ public class QuanLySachGUI extends JFrame implements ActionListener, MouseListen
             return false;
         }
 
-        if (!(tuaSach.length() > 0 && tuaSach.matches("[a-zA-Z ]+"))) {
-            showMessage("Error: Tựa sách theo mẫu: [a-zA-Z ]+", txtTuaSach);
+        if (!(tuaSach.length() > 0 && tuaSach.matches("[a-zA-Z' ]+"))) {
+            showMessage("Error: Tựa sách theo mẫu: [a-zA-Z' ]+", txtTuaSach);
             return false;
         }
 
-        if (!(tacGia.length() > 0 && tacGia.matches("[a-zA-Z ]+"))) {
-            showMessage("Error: Tác giả theo mẫu: [a-zA-Z ]+", txtTacGia);
+        if (!(tacGia.length() > 0 && tacGia.matches("[a-zA-Z' ]+"))) {
+            showMessage("Error: Tác giả theo mẫu: [a-zA-Z' ]+", txtTacGia);
             return false;
         }
 
@@ -383,8 +383,8 @@ public class QuanLySachGUI extends JFrame implements ActionListener, MouseListen
             }
         }
 
-        if (!(nxb.length() > 0 && nxb.matches("[a-zA-Z ]+"))) {
-            showMessage("Error: Nhà xuất bản theo mẫu: [a-zA-Z ]+", txtTacGia);
+        if (!(nxb.length() > 0 && nxb.matches("[a-zA-Z' ]+"))) {
+            showMessage("Error: Nhà xuất bản theo mẫu: [a-zA-Z' ]+", txtTacGia);
             return false;
         }
 

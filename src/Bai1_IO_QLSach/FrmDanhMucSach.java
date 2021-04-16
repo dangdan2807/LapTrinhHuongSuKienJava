@@ -131,7 +131,7 @@ public class FrmDanhMucSach extends JFrame implements ActionListener {
 
 		// Phần South
 		JScrollPane scroll;
-		String[] headers = "MaSach;TuaSach;TacGia;NamXuatBan;NhaXuatBan;SoTrang;DonGia;ISBN".split(";");
+		// String[] headers = "MaSach;TuaSach;TacGia;NamXuatBan;NhaXuatBan;SoTrang;DonGia;ISBN".split(";");
 
 		// tableModel = new DefaultTableModel(headers, 0);
 		add(scroll = new JScrollPane(table = new JTable(tableModel), JScrollPane.VERTICAL_SCROLLBAR_ALWAYS,
@@ -200,8 +200,6 @@ public class FrmDanhMucSach extends JFrame implements ActionListener {
 	private void updateTableData() {
 		tableModel = new SachTableModel(thuVien.getDsSach());
 		table.setModel(tableModel);
-		// tableModel.addRow(thuVien.getDsSach());
-
 	}
 
 	@Override
