@@ -9,16 +9,17 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 public class LuuTru_Character {
-    public static final String WORKING_DIR = System.getProperty("user.dir") + "/src/QuanLySach/data";
-    public static final String FILENAME = WORKING_DIR + "/DanhMucSach.txt";
+//    public static final String WORKING_DIR = System.getProperty("user.dir") + "/src/QuanLySach/data";
+//    public static final String FILENAME = WORKING_DIR + "/DanhMucSach.txt";
+    public static final String FILENAME = "data/DanhMucSach.txt";
 
     public void LuuFile(ArrayList<Sach> dsSach) {
         BufferedWriter bw;
         // tạo thư mục lưu
-        File f = new File(WORKING_DIR);
-        if (!f.exists()) {
-            f.mkdirs();
-        }
+//        File f = new File(WORKING_DIR);
+//        if (!f.exists()) {
+//            f.mkdirs();
+//        }
 
         try {
             bw = new BufferedWriter(new FileWriter(FILENAME));
@@ -35,10 +36,10 @@ public class LuuTru_Character {
     public static ArrayList<Sach> DocFile() throws IOException {
         ArrayList<Sach> ds = new ArrayList<Sach>();
         BufferedReader br = null;
-        File f = new File(WORKING_DIR);
-        if (!f.exists()) {
-            f.mkdirs();
-        }
+//        File f = new File(WORKING_DIR);
+//        if (!f.exists()) {
+//            f.mkdirs();
+//        }
         if (new File(FILENAME).exists()) {
             br = new BufferedReader(new FileReader(FILENAME));
             while (br.ready()) {

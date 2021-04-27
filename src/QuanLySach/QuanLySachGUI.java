@@ -132,7 +132,8 @@ public class QuanLySachGUI extends JFrame implements ActionListener, MouseListen
             ds.docDuLieuTuFile();
             for (int i = 0; i < ds.getSize(); i++) {
                 Sach s = ds.getElement(i);
-                modelTable.addRow(new Object[] { s.getMaSach(), s.getTuaSach(), s.getTacGia(), s.getNamSx(), s.getNxb(),
+                modelTable.addRow(new Object[] { s.getMaSach(), s.getTuaSach(), 
+                		s.getTacGia(), s.getNamSx(), s.getNxb(),
                         s.getSoTrang(), s.getDonGia(), s.getISBN() });
                 cboSach.addItem(s.getMaSach());
             }
