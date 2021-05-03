@@ -9,9 +9,6 @@ import javax.swing.table.*;
 
 public class QuanLySachGUI extends JFrame implements ActionListener, MouseListener {
 
-    /**
-     *
-     */
     private static final long serialVersionUID = 1L;
 
     private JTextField txtMaSach, txtTuaSach, txtTacGia, txtNamSX, txtNxb, txtSoTrang, txtDonGia, txtIsbn;
@@ -297,7 +294,8 @@ public class QuanLySachGUI extends JFrame implements ActionListener, MouseListen
         result = ds.themSach(s);
         if (result) {
             // thêm vào table
-            modelTable.addRow(new Object[] { maSach, tuaSach, tacGia, namSX, nxb, soTrang, donGia, ISBN });
+            Object[] rowDataSach = new Object[] { maSach, tuaSach, tacGia, namSX, nxb, soTrang, donGia, ISBN };
+            modelTable.addRow(rowDataSach);
             // thêm vào danh sách id
             cboSach.addItem(maSach);
             return true;

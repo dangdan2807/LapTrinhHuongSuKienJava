@@ -1,26 +1,24 @@
 package QuanLySach;
 
-import java.io.BufferedReader;
-import java.io.BufferedWriter;
-import java.io.File;
-import java.io.FileReader;
-import java.io.FileWriter;
-import java.io.IOException;
+import java.io.*;
 import java.util.ArrayList;
 
 public class LuuTru_Character {
-//    public static final String WORKING_DIR = System.getProperty("user.dir") + "/src/QuanLySach/data";
-//    public static final String FILENAME = WORKING_DIR + "/DanhMucSach.txt";
+    // public static final String WORKING_DIR = System.getProperty("user.dir") +
+    // "/src/QuanLySach/data";
+    // public static final String FILENAME = WORKING_DIR + "/DanhMucSach.txt";
     public static final String FILENAME = "data/DanhMucSach.txt";
+
+    public void checkFolder(String working_dir) {
+        File f = new File(working_dir);
+        if (!f.exists()) {
+            f.mkdirs();
+        }
+    }
 
     public void LuuFile(ArrayList<Sach> dsSach) {
         BufferedWriter bw;
-        // tạo thư mục lưu
-//        File f = new File(WORKING_DIR);
-//        if (!f.exists()) {
-//            f.mkdirs();
-//        }
-
+        // checkFolder(WORKING_DIR);
         try {
             bw = new BufferedWriter(new FileWriter(FILENAME));
             bw.write("");
@@ -36,10 +34,7 @@ public class LuuTru_Character {
     public static ArrayList<Sach> DocFile() throws IOException {
         ArrayList<Sach> ds = new ArrayList<Sach>();
         BufferedReader br = null;
-//        File f = new File(WORKING_DIR);
-//        if (!f.exists()) {
-//            f.mkdirs();
-//        }
+        // checkFolder(WORKING_DIR);
         if (new File(FILENAME).exists()) {
             br = new BufferedReader(new FileReader(FILENAME));
             while (br.ready()) {
