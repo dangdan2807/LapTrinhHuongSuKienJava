@@ -45,7 +45,7 @@ public class FrmDanhMucSach extends JFrame implements ActionListener {
 	private JButton btnLoc;
 
 	public FrmDanhMucSach() {
-		setTitle("Quáº£n lÃ½ sÃ¡ch");
+		setTitle("Quản lý sách");
 		setSize(900, 600);
 		setLocationRelativeTo(null);
 		setResizable(false);
@@ -55,7 +55,7 @@ public class FrmDanhMucSach extends JFrame implements ActionListener {
 
 	private void buildUI() {
 
-		// Pháº§n North
+		// Phần North
 		JPanel pnlNorth;
 		add(pnlNorth = new JPanel(), BorderLayout.NORTH);
 		pnlNorth.setPreferredSize(new Dimension(0, 180));
@@ -63,13 +63,13 @@ public class FrmDanhMucSach extends JFrame implements ActionListener {
 		pnlNorth.setLayout(null); // Absolute layout
 
 		JLabel lblMaSach, lblTuaSach, lblTacGia, lblNamXB, lblNhaXB, lblSoTrang, lblDonGia, lblISBN;
-		pnlNorth.add(lblMaSach = new JLabel("MÃ£ sÃ¡ch: "));
-		pnlNorth.add(lblTuaSach = new JLabel("Tá»±a sÃ¡ch: "));
-		pnlNorth.add(lblTacGia = new JLabel("TÃ¡c giáº£: "));
-		pnlNorth.add(lblNamXB = new JLabel("NÄƒm xuáº¥t báº£n: "));
-		pnlNorth.add(lblNhaXB = new JLabel("NhÃ  xuáº¥t báº£n: "));
-		pnlNorth.add(lblSoTrang = new JLabel("Sá»‘ trang: "));
-		pnlNorth.add(lblDonGia = new JLabel("Ä�Æ¡n giÃ¡: "));
+		pnlNorth.add(lblMaSach = new JLabel("Mã sách: "));
+		pnlNorth.add(lblTuaSach = new JLabel("Tựa sách: "));
+		pnlNorth.add(lblTacGia = new JLabel("Tác giả: "));
+		pnlNorth.add(lblNamXB = new JLabel("Năm xuất bản: "));
+		pnlNorth.add(lblNhaXB = new JLabel("Nhà xuất bản: "));
+		pnlNorth.add(lblSoTrang = new JLabel("Số trang: "));
+		pnlNorth.add(lblDonGia = new JLabel("đơn giá: "));
 		pnlNorth.add(lblISBN = new JLabel("International Standard Book Number: "));
 
 		pnlNorth.add(txtMaSach = new JTextField());
@@ -110,20 +110,20 @@ public class FrmDanhMucSach extends JFrame implements ActionListener {
 		txtISBN.setBounds(240, 120, 180, h);
 		txtMess.setBounds(20, 145, 550, 20);
 
-		// Pháº§n Center
+		// Phần Center
 		JPanel pnlCenter;
 		add(pnlCenter = new JPanel(), BorderLayout.CENTER);
-		pnlCenter.add(btnThem = new JButton("ThÃªm"));
-		pnlCenter.add(btnXoaRong = new JButton("XÃ³a rá»—ng"));
-		pnlCenter.add(btnXoa = new JButton("XÃ³a"));
-		pnlCenter.add(btnSua = new JButton("Sá»­a"));
-		pnlCenter.add(btnLuu = new JButton("LÆ°u"));
-		pnlCenter.add(new JLabel("TÃ¬m theo mÃ£ sÃ¡ch: "));
+		pnlCenter.add(btnThem = new JButton("Thêm"));
+		pnlCenter.add(btnXoaRong = new JButton("Xóa rỗng"));
+		pnlCenter.add(btnXoa = new JButton("Xóa"));
+		pnlCenter.add(btnSua = new JButton("Sửa"));
+		pnlCenter.add(btnLuu = new JButton("Lưu"));
+		pnlCenter.add(new JLabel("Tìm theo mã sách: "));
 		pnlCenter.add(cboMaSach = new JComboBox<String>());
 		cboMaSach.setPreferredSize(new Dimension(100, 25));
-		pnlCenter.add(btnLoc = new JButton("Lá»�c theo tá»±a sÃ¡ch"));
+		pnlCenter.add(btnLoc = new JButton("Lọc theo tựa sách"));
 
-		// Pháº§n South
+		// Phần South
 		JScrollPane scroll;
 		// String[] headers =
 		// "MaSach;TuaSach;TacGia;NamXuatBan;NhaXuatBan;SoTrang;DonGia;ISBN".split(";");
@@ -131,7 +131,7 @@ public class FrmDanhMucSach extends JFrame implements ActionListener {
 		// tableModel = new DefaultTableModel(headers, 0);
 		add(scroll = new JScrollPane(table = new JTable(tableModel), JScrollPane.VERTICAL_SCROLLBAR_ALWAYS,
 				JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED), BorderLayout.SOUTH);
-		scroll.setBorder(BorderFactory.createTitledBorder("Danh sÃ¡ch cÃ¡c cuá»‘n sÃ¡ch"));
+		scroll.setBorder(BorderFactory.createTitledBorder("Danh sách các cuốn sách"));
 		table.setRowHeight(20);
 		scroll.setPreferredSize(new Dimension(0, 350));
 

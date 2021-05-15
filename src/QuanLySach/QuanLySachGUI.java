@@ -108,11 +108,6 @@ public class QuanLySachGUI extends JFrame implements ActionListener, MouseListen
         pDuoi.setBorder(BorderFactory.createTitledBorder(null, "Danh sách các cuốn sách"));
         pDuoi.setLayout(new BoxLayout(pDuoi, BoxLayout.X_AXIS));
         modelTable = new DefaultTableModel(cols, 0) {
-            /**
-             *
-             */
-            private static final long serialVersionUID = 1L;
-
             @Override
             public boolean isCellEditable(int i, int i1) {
                 return false; // To change body of generated methods, choose Tools | Templates.
