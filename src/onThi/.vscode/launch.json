@@ -1,0 +1,17 @@
+{
+    "configurations": [
+        {
+            "type": "java",
+            "name": "Launch TestLopHoc",
+            "request": "launch",
+            "mainClass": "GUI.TestLopHoc",
+            "projectName": "onThi_c0d85f85"
+        },
+        {
+            "type": "java",
+            "name": "Launch Current File",
+            "request": "launch",
+            "mainClass": "${file}"
+        }
+    ]
+}
