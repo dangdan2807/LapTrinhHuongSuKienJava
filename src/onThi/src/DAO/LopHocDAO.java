@@ -1,10 +1,10 @@
-package DAO;
+package onThi.src.DAO;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-import entity.LopHoc;
+import onThi.src.entity.LopHoc;
 
 public class LopHocDAO {
     private static LopHocDAO instance;

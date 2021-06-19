@@ -1,10 +1,10 @@
-package DAO;
+package onThi.src.DAO;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-import entity.GiaoVien;
+import onThi.src.entity.GiaoVien;
 
 public class GiaoVienDAO {
     private static GiaoVienDAO instance;

@@ -1,4 +1,4 @@
-package GUI;
+package onThi.src.GUI;
 
 
 public class TestLopHoc {

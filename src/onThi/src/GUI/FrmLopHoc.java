@@ -1,16 +1,14 @@
-package GUI;
+package onThi.src.GUI;
 
 import java.awt.*;
-import java.util.*;
 import java.awt.event.*;
+import java.util.ArrayList;
 
 import javax.swing.*;
 import javax.swing.table.*;
 
-import DAO.GiaoVienDAO;
-import DAO.LopHocDAO;
-import entity.GiaoVien;
-import entity.LopHoc;
+import onThi.src.DAO.*;
+import onThi.src.entity.*;
 
 public class FrmLopHoc extends JFrame implements ActionListener, MouseListener {
 

@@ -1,8 +1,8 @@
-package onThi.src.DAO;
+package BaiThi.DAO;
 
 import java.sql.*;
 
-import onThi.src.ConnectDB.ConnectDB;
+import BaiThi.ConnectDB.ConnectDB;
 
 public class DataProvider {
     private static DataProvider instance;
@@ -15,93 +15,92 @@ public class DataProvider {
     }
 
     public ResultSet ExecuteQuery(String query, Object[] params) {
-        PreparedStatement stmt = null;
-        ResultSet data = null;
+        PreparedStatement ps = null;
+        ResultSet dataList = null;
         Connection con = null;
         try {
             db.connect();
             con = ConnectDB.getConnection();
-            stmt = con.prepareStatement(query, ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
+            ps = con.prepareStatement(query);
             if (params != null) {
                 String[] list = query.split(" ");
                 int i = 1;
                 for (String item : list) {
                     if (item.contains("?")) {
-                        stmt.setObject(i, params[i - 1]);
+                        ps.setObject(i, params[i - 1]);
                         i++;
                     }
                 }
             }
-            data = stmt.executeQuery();
+            dataList = ps.executeQuery();
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        return data;
+        return dataList;
     }
 
     public int ExecuteNonQuery(String query, Object[] params) {
-        PreparedStatement stmt = null;
-        int data = 0;
+        PreparedStatement ps = null;
+        int dataList = 0;
         Connection con = null;
         try {
             db.connect();
             con = ConnectDB.getConnection();
-            stmt = con.prepareStatement(query, ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
+            ps = con.prepareStatement(query);
             if (params != null) {
                 String[] list = query.split(" ");
                 int i = 1;
                 for (String item : list) {
                     if (item.contains("?")) {
-                        stmt.setObject(i, params[i - 1]);
+                        ps.setObject(i, params[i - 1]);
                         i++;
                     }
                 }
             }
-            data = stmt.executeUpdate();
+            dataList = ps.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {
             try {
-                stmt.close();
+                ps.close();
             } catch (SQLException e) {
                 e.printStackTrace();
             }
         }
-        return data;
+        return dataList;
     }
 
     public Object ExecuteScalar(String query, Object[] params) {
-        PreparedStatement stmt = null;
-        Object data = null;
+        PreparedStatement ps = null;
         ResultSet rs = null;
+        Object dataList = null;
         Connection con = null;
         try {
             db.connect();
             con = ConnectDB.getConnection();
-            stmt = con.prepareStatement(query, ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
+            ps = con.prepareStatement(query);
             if (params != null) {
                 String[] list = query.split(" ");
                 int i = 1;
                 for (String item : list) {
                     if (item.contains("?")) {
-                        stmt.setObject(i, params[i - 1]);
+                        ps.setObject(i, params[i - 1]);
                         i++;
                     }
                 }
             }
-            rs = stmt.executeQuery();
-            while (rs.next()) {
-                data = rs.getObject(1);
-            }
+            rs = ps.executeQuery();
+            rs.next();
+            dataList = rs.getObject(1);
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {
             try {
-                stmt.close();
+                ps.close();
             } catch (SQLException e) {
                 e.printStackTrace();
             }
         }
-        return data;
+        return dataList;
     }
 }

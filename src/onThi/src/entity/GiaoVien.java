@@ -1,4 +1,4 @@
-package entity;
+package onThi.src.entity;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
